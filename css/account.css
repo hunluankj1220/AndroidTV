@@ -1,0 +1,84 @@
+/* pulic */
+
+/* wrapper */
+.wrapper {
+	font-size: 22px;
+	height: 466px;
+}
+.left {
+	float: left;
+	width: 843px;
+	height: 100%;
+	background: cover;
+}
+.left .info {
+	height: 46px;
+	line-height: 46px;
+	text-align: center;
+	background: url('../images/account-bar.png') no-repeat;
+	background: cover;
+}
+.info .infoImg {
+	vertical-align: middle;
+	margin-right: 8px;
+}
+.left ul {
+	height: 420px;
+	background: url('../images/account-leftbg.png') no-repeat;
+}
+.left ul li {
+	padding-left: 47px;
+	padding-top: 20px;
+}
+.left ul li .info-right {
+	float: right;
+	width: 400px;
+}
+.left .name {
+	display: inline-block;
+	width: 125px;
+}
+.left .money {
+	font-size: 24px;
+}
+.left .btn-box {
+	text-align: center;
+}
+.left .chargeBtn {
+	display: inline-block;
+	width: 144px;
+	text-align: center;
+	height: 48px;
+	line-height: 48px;
+	background: #444f72;
+	/* background-size: cover; */
+	border-radius: 28.5px;
+	color: #fff;
+	box-shadow: 0 0 10px #90BFF4;
+}
+.left .active {
+	/* background: url('../images/charge-btn-active.png') no-repeat; */
+	background: linear-gradient(#54BAD5,#0F479D);
+	background-size: cover;
+	border: 2px solid #fff;
+	box-shadow: none;
+}
+
+.right {
+	float: right;
+	text-align: center;
+	width: 300px;
+	height: 100%;
+	background: url('../images/account-rightbg.png') no-repeat;
+	padding-top: 26px;
+}
+.wx-txt {
+	margin: 10px 0;
+}
+.app-txt {
+	margin-top: 20px;
+}
+.wx-txt img, .app-txt img{
+	vertical-align: top;
+	margin-right: 6px;
+}

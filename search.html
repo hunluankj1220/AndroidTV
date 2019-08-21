@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/public.css">
+	<link rel="stylesheet" href="./css/search.css">
+</head>
+<body>
+	<div class="main">
+		<!-- header -->
+		<!-- <script src="./public/header.js"></script> -->
+		<!-- wrapper -->
+		<div id="wrapper" class="wrapper clear">
+			<!-- left-part -->
+			<div class="left">
+				<div class="searchText-box">
+					<div class="searchText-box-inner">
+						<img src="./images/icon-search.png" alt="">
+						<span class="searchText"></span>
+					</div>
+				</div>
+				<div class="btns">
+					<span id="empty" class="btn empty">
+						<img src="./images/icon-empty.png" alt="">
+						清空
+					</span>
+					<span id="back" class="btn back">
+						<img src="./images/icon-back.png" alt="">
+						退格
+					</span>
+				</div>
+				<div class="board-box">
+					<!-- 全键盘 -->
+					<div class="keyboard">
+						<ul class="clear">
+							<li id="key-1"><span>A</span></li>
+							<li id="key-2"><span>B</span></li>
+							<li id="key-3"><span>C</span></li>
+							<li id="key-4"><span>D</span></li>
+							<li id="key-5"><span>E</span></li>
+							<li id="key-6"><span>F</span></li>
+							<li id="key-7"><span>G</span></li>
+							<li id="key-8"><span>H</span></li>
+							<li id="key-9"><span>I</span></li>
+							<li id="key-10"><span>J</span></li>
+							<li id="key-11"><span>K</span></li>
+							<li id="key-12"><span>L</span></li>
+							<li id="key-13"><span>M</span></li>
+							<li id="key-14"><span>N</span></li>
+							<li id="key-15"><span>O</span></li>
+							<li id="key-16"><span>P</span></li>
+							<li id="key-17"><span>Q</span></li>
+							<li id="key-18"><span>R</span></li>
+							<li id="key-19"><span>S</span></li>
+							<li id="key-20"><span>T</span></li>
+							<li id="key-21"><span>U</span></li>
+							<li id="key-22"><span>V</span></li>
+							<li id="key-23"><span>W</span></li>
+							<li id="key-24"><span>X</span></li>
+							<li id="key-25"><span>Y</span></li>
+							<li id="key-26"><span>Z</span></li>
+							<li id="key-27"><span>1</span></li>
+							<li id="key-28"><span>2</span></li>
+							<li id="key-29"><span>3</span></li>
+							<li id="key-30"><span>4</span></li>
+							<li id="key-31"><span>5</span></li>
+							<li id="key-32"><span>6</span></li>
+							<li id="key-33"><span>7</span></li>
+							<li id="key-34"><span>8</span></li>
+							<li id="key-35"><span>9</span></li>
+						</ul>
+					</div>
+					<!-- t9键盘 -->
+					<div class="t9board hidden">
+						<ul>
+							<li>
+								<div id="t-1" class="t9-container">
+									<div id="t-1-1" class="t9 t9-1">0</div>
+									<div class="t9 t9-2">|</div>
+									<div id="t-1-2" class="t9 t9-3">1</div>
+									<div id="t-1-3" class="t9 t9-4">
+										<span style="display:inline-block;transform: rotate(90deg);transform-origin: center">]</span>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-2" class="t9-container">
+									<div id="t-2-1" class="t9 b-top">2</div>
+									<div id="t-2-2" class="t9 b-left">A</div>
+									<div id="t-2-3" class="t9 b-middle">B</div>
+									<div id="t-2-4" class="t9 b-right">C</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-3" class="t9-container">
+									<div id="t-3-1" class="t9 b-top">3</div>
+									<div id="t-3-2" class="t9 b-left">D</div>
+									<div id="t-3-3" class="t9 b-middle">E</div>
+									<div id="t-3-4" class="t9 b-right">F</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-4" class="t9-container">
+									<div id="t-4-1" class="t9 b-top">4</div>
+									<div id="t-4-2" class="t9 b-left">G</div>
+									<div id="t-4-3" class="t9 b-middle">H</div>
+									<div id="t-4-4" class="t9 b-right">I</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-5" class="t9-container">
+									<div id="t-5-1" class="t9 b-top">5</div>
+									<div id="t-5-2" class="t9 b-left">J</div>
+									<div id="t-5-3" class="t9 b-middle">K</div>
+									<div id="t-5-4" class="t9 b-right">L</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-6" class="t9-container">
+									<div id="t-6-1" class="t9 b-top">6</div>
+									<div id="t-6-2" class="t9 b-left">M</div>
+									<div id="t-6-3" class="t9 b-middle">N</div>
+									<div id="t-6-4" class="t9 b-right">O</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-7" class="t9-container">
+									<div id="t-7-1" class="t9-s t9-7-1">7</div>
+									<div id="t-7-2" class="t9-s t9-7-2">P</div>
+									<div id="t-7-3" class="t9-s t9-7-3">Q</div>
+									<div id="t-7-4" class="t9-s t9-7-4">R</div>
+									<div id="t-7-5" class="t9-s t9-7-5">S</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-8" class="t9-container">
+									<div id="t-8-1" class="t9 b-top">8</div>
+									<div id="t-8-2" class="t9 b-left">T</div>
+									<div id="t-8-3" class="t9 b-middle">U</div>
+									<div id="t-8-4" class="t9 b-right">V</div>
+								</div>
+							</li>
+							<li>
+								<div id="t-9" class="t9-container">
+									<div id="t-9-1" class="t9-s t9-7-1">9</div>
+									<div id="t-9-2" class="t9-s t9-7-2">W</div>
+									<div id="t-9-3" class="t9-s t9-7-3">X</div>
+									<div id="t-9-4" class="t9-s t9-7-4">Y</div>
+									<div id="t-9-5" class="t9-s t9-7-5">Z</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tabs">
+					<span id="keyboard" class="tab tab-active">全键盘</span>
+					<span id="t9board" class="tab">T9键盘</span>
+				</div>
+			</div>
+			<!-- content -->
+			<div class="content">
+				<p class="tips">
+					<span>
+						您可能在找?
+					</span>
+				</p>
+				<!-- 内容展示区 -->
+				<div id="search" class="content-inner"></div>
+				<!-- 下提示箭头 -->
+				<div class="down-tips hidden">
+					<img style="transform: scale(0.6)" src="./images/icon-down.png" alt="">
+				</div>
+			</div>
+			<!-- right -->
+			<div class="right hidden">
+				<div class="goods">
+					<div class="img">
+						<img id="good-pic" src="./images/default.png" alt="">
+					</div>
+					<p id="good-name" class="title">商品名称</p>
+					<p class="info">
+						<span>商品介绍:</span>
+						<span id="good-info">商品介绍</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- header -->
+		<script src="./public/header.js"></script>
+		<!-- detail-wrapper -->
+		<script src="./public/detail.js"></script>
+		<!-- 模拟 -->
+		<!-- <div class="control">
+			<div id="up">up</div>
+			<div id="down">down</div>
+			<div id="left">left</div>
+			<div id="right">right</div>
+			<div id="ok">ok</div>
+			<div id="quit">quit</div>
+		</div> -->
+	</div>
+	
+	<script src="./public/jquery.js"></script>
+	<script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+	<script src="./public/port.js"></script>
+	<script src="./js/public.js"></script>
+	<script src="./js/search.js"></script>
+</body>
+</html>

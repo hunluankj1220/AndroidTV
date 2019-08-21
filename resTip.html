@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/public.css">
+	<style>
+		.hidden {
+			display: none;
+		}
+		.status {
+			text-align: center;
+			margin-top: 50px;
+		}
+		.btns {
+			text-align: center;
+			margin-top: 20px;
+		}
+		.status-title {
+			font-size: 40px;
+			margin-top: 10px;
+			color: #fff;
+		}
+		.status-tips {
+			font-size: 26px;
+			margin-top: 20px;
+			color: #f5f4fc;
+		}
+		.cut-down {
+			font-size: 22px;
+			margin-top: 20px;
+		}
+		.seconds {
+			color: #009cff;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<!-- header -->
+		<script src="./public/header.js"></script>
+		<!-- 状态 -->
+		<div class="status">
+			<!-- scuuess -->
+			<div class="success hidden">
+				<img src="./images/success.png" alt="">
+				<p class="status-title"></p>
+				<p class="status-tips"></p>
+				<p class="cut-down">
+					还剩 <span class="seconds">5</span> 秒，页面将自动跳转
+				</p>
+			</div>
+			<!-- error -->
+			<div class="error hidden">
+				<img src="./images/error.png" alt="">
+				<p class="status-title"></p>
+				<p class="status-tips"></p>
+				<p class="cut-down">
+					还剩 <span class="seconds">5</span> 秒，页面将自动跳转
+				</p>
+			</div>
+			<!-- cancel -->
+			<div class="cancel"></div>
+		</div>
+		<!-- btn -->
+		<div class="btns hidden">
+			<img src="./images/confirm-btn.png" alt="">
+		</div>
+	</div>
+	<script src="./public/jquery.js"></script>
+	<script src="./public/port.js"></script>
+	<script src="./js/public.js"></script>
+	<script>
+		// optype: 0/订购  1/充值  2/续订
+		// action: 0/充值成功  1/取消  其他/失败  
+		// 初始化全局变量
+		var orginHtml = '';  // 来源页面
+		var status = '';     // 状态
+		var msg = '';        // 信息
+		var title = '';      // 信息说明
+		// 关于第三方支付的全局变量
+		var optype;
+		var action;
+
+
+
+		// 页面加载完成后
+		$(function(){
+			if (parseQuery().optype) {
+				// 第三方回调页面的状态展示
+				optype = parseInt(parseQuery().optype);
+				action = parseInt(parseQuery().action);
+				if (optype == 0) {
+					// 订购
+					switch (action) {
+						case 0: // 订购成功
+							$('.success').removeClass('hidden');
+							$('.status-title').html('开通成功');
+							var info = '<p>尊敬的客户您好，您提交的订购信息已经处理成功！</p>'
+									 + '<p>请耐心等待系统开通。</p>'
+      			  					 + '<p>如有疑问请拨打客服电话：96531</p>'
+      			  					 + '<p>感谢您的支持!</p>';
+							$('.status-tips').html(info);
+							$('.btns').removeClass('hidden');
+							timeDown('./order.html');
+							break;
+						case 1: // 订购取消
+							$('.error').removeClass('hidden');
+							$('.status-title').html('开通取消');
+							$('.btns').removeClass('hidden');
+							timeDown('./goods.html');
+							break;
+						default: // 订购失败
+							$('.error').removeClass('hidden');
+							$('.status-title').html('开通失败');
+							$('.btns').removeClass('hidden');
+							timeDown('./goods.html');
+							break;
+					}
+				} else if (optype == 1) {
+					// 充值
+					switch (action) {
+						case 0: // 充值成功
+							// $('.success').removeClass('hidden');
+							// $('.status-title').html('充值成功');
+							// 请求接口
+							getInfo();
+							break;
+						case 1: // 充值取消
+							$('.error').removeClass('hidden');
+							$('.status-title').html('充值取消');
+							$('.btns').removeClass('hidden');
+							timeDown('./charge.html');
+							break;
+						default: // 充值失败
+							$('.error').removeClass('hidden');
+							$('.status-title').html('充值失败');
+							$('.btns').removeClass('hidden');
+							timeDown('./charge.html');
+							break;
+					}
+				} else if (optype == 2) {
+					// 续订
+					switch (action) {
+						case 0: // 续订成功
+							$('.success').removeClass('hidden');
+							$('.status-title').html('续订成功');
+							var info = '<p>尊敬的客户您好，您提交的续订信息已经处理成功！</p>'
+									 + '<p>请耐心等待系统开通。</p>'
+      			  					 + '<p>如有疑问请拨打客服电话：96531</p>'
+      			  					 + '<p>感谢您的支持!</p>';
+							$('.status-tips').html(info);
+							$('.btns').removeClass('hidden');
+							timeDown('./order.html');
+							break;
+						case 1: // 续订取消
+							$('.error').removeClass('hidden');
+							$('.status-title').html('续订取消');
+							$('.btns').removeClass('hidden');
+							timeDown('./order.html');
+							break;
+						default: // 续订失败
+							$('.error').removeClass('hidden');
+							$('.status-title').html('续订失败');
+							$('.btns').removeClass('hidden');
+							timeDown('./order.html');
+							break;
+					}
+				} else if (optype == 3) {
+					// 从安卓获取sku信息
+					var skuDataObj = JSON.parse(getSkuFromAnd());
+					var sku = skuDataObj.sku;
+					var goodsname = skuDataObj.goodsname;
+					// 请求优惠卡券和密码
+					// getCardRollsCallback(sku,goodsname);
+					// 含有优惠券的订购
+					switch (action) {
+						case 0: // 订购成功
+							$('.success').removeClass('hidden');
+							$('.status-title').html('开通成功');
+							var info = '<p>尊敬的客户您好，您提交的订购信息已经处理成功！请耐心等待系统开通。</p>'
+      			  					 + '<p>如有疑问请拨打客服电话：96531</p>'
+      			  					 + '<p>感谢您的支持!</p>'
+      			  					 + '<div class="rolls-wrapper hidden"><p style="margin-top:10px">您的卡号为： <span class="rollscard yellow"> </span> &nbsp;&nbsp;  密码： <span class="rollspwd yellow"></span></p>'
+      			  					 + '<p>使用步骤：打开芒果TV--我的--会员卡兑换--输入以上兑换码即可(兑换码为16位或17位)</p></div>';
+							$('.status-tips').html(info);
+							$('.btns').removeClass('hidden');
+							timeDown('./order.html');
+							break;
+						case 1: // 订购取消
+							$('.error').removeClass('hidden');
+							$('.status-title').html('开通取消');
+							$('.btns').removeClass('hidden');
+							timeDown('./goods.html');
+							break;
+						default: // 订购失败
+							$('.error').removeClass('hidden');
+							$('.status-title').html('开通失败');
+							$('.btns').removeClass('hidden');
+							timeDown('./goods.html');
+							break;
+					}
+				}
+			} else {
+				// 本地页面状态展示
+				orginHtml = parseQuery().html;
+				status = parseQuery().status;
+				msg = decodeURI(parseQuery().msg);
+				title = decodeURI(parseQuery().title);
+				if (status == 'success') {
+					$('.success').removeClass('hidden');
+					$('.success .status-title').html(title);
+					if (msg !== 'undefined') {
+						$('.success .status-tips').html(msg);
+					}
+					$('.success .status-tips').html(msg);
+					// 判断是否从order页面跳转过来的
+					if (orginHtml == 'order') {
+						if (status == 'success') {
+							timeDown('./unsubscribe.html');	
+						} else {
+							timeDown('./' + orginHtml + '.html');	
+						}
+					} else {
+						timeDown('./' + orginHtml + '.html');
+					}
+					
+				} else if (status == 'error') {
+					$('.error').removeClass('hidden');
+					$('.error .status-title').html(title);
+					if (msg !== 'undefined') {
+						$('.error .status-tips').html(msg);
+					}
+					// timeDown('./' + orginHtml + '.html');
+					timeDown('./home.html');
+				}
+				$('.btns').removeClass('hidden');
+			}
+		});
+
+		// doEnter
+		function doEnter () {
+			if (parseQuery().optype) {
+				switch (parseInt(optype)) {
+					case 0: // 订购
+						switch (action) {
+							case 0: // 订购成功
+								window.location.href = './order.html';
+								break;
+							case 1: // 订购取消
+								window.location.href = './goods.html';
+								break;
+							default: // 订购失败
+								window.location.href = './goods.html';
+								break; 
+						}
+						break;
+					case 1: // 充值
+						window.location.href = './charge.html';
+						break;
+					case 2: // 续订
+						window.location.href = './order.html';
+						break;
+					case 3:
+						window.location.href = './order.html';
+						break;
+				}
+			} else {
+				if (orginHtml == 'order') {
+					if (status == 'success') {
+            window.location.href = './unsubscribe.html';
+					} else {
+						// window.location.href = './' + orginHtml + '.html';
+						window.location.href = './home.html';
+					}	
+				} else {
+					// window.location.href = './' + orginHtml + '.html';
+					window.location.href = './home.html';
+				}
+			}
+		}
+		
+		// 请求用户详情接口
+		function getInfo () {
+			$.ajax({
+				type: 'get',
+				url: accountDataUrl,
+				data: {
+					reqvsn: 1,
+					para: queryString_account
+				},
+				timeout: 10000,
+				success: function (data) {
+					if (data.code == '40001101') {
+						window.location.href = './resTip.html?html=account&title=数据查询失败';
+					} else {
+						var amount = data.amount;
+						var deductionAmount = data.deductionAmount;
+						// amount >= deductionAmount
+						if(amount >= deductionAmount){
+							var info = '<p>您的账户余额充足，感谢您的使用。系统将在您的产品到期后，自动为您续延。</p>'
+			      			  + '<p>如有疑问请咨询当地营业网点或者客服热线！</p>';
+						} else {
+							var info = '<p>由于您的余额不足以抵扣即将到期产品的消费金额，</p>'
+								 + '<p>请再次充值，确保您充值后的账户余额充足。</p>'
+								+ '<p>如有疑问请咨询当地营业网点或者客服热线！</p>';
+						}
+						$('.success').removeClass('hidden');
+						$('.status-title').html('充值成功');
+						$('.status-tips').html(info);
+						$('.btns').removeClass('hidden');
+						timeDown('./charge.html');
+					}
+				},
+				error: function () {
+					window.location.href = './resTip.html?html=account&title=网络请求超时';
+				}
+			});
+		}
+
+		// 倒计时
+		function timeDown (url) {
+			var seconds = 5;
+			var timer = setInterval(function(){
+				seconds--;
+				$('.seconds').html(seconds);
+				if (seconds <= 0) {
+					clearInterval(timer);
+					window.location.href = url;
+				}
+			}, 1000);
+		}
+	</script>
+</body>
+</html>

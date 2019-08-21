@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/public.css">
+	<style>
+		.wrapper {
+			width: 290px;
+			height: 246px;
+			margin: auto;
+			margin-top: 120px;
+			position: relative;
+			margin-left: 300px;
+		}
+		.text {
+			position: absolute;
+			top: 273px;
+			left: 250px;
+			font-size: 26px;
+			width: 360px;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="wrapper">
+			<img src="./images/popsearch.png" alt="">
+			<p class="text">
+				正在检测智能卡，请稍后... 
+				<img src="./images/loading.gif" alt="">
+			</p>
+		</div>
+	</div>
+	<script src="./public/jquery.js"></script>
+	<script src="./js/public.js"></script>
+	<script>
+		// 页面加载完成后
+		$(function(){
+			// 获取卡号
+			// alert(document.body.clientWidth);
+			getCardFromAd();
+		});
+
+		// 从安卓获取卡号
+		function getCardFromAd () {
+			// var card = jsObject.getCardNumber();
+			var card='8731204033541662'
+			setTimeout(function(){
+				if (card) {
+					window.location.href = './home.html';
+				} else {
+					window.location.href = './resTip.html?html=index&status=error&title=智能卡号获取失败';
+				}
+			}, 2000);
+		}
+	</script>
+</body>
+</html>

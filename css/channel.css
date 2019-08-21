@@ -1,0 +1,66 @@
+/* back */
+#listWrapper .back {
+	font-size: 30px;
+}
+#listWrapper .back img {
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+/* wrapper */
+#listWrapper .wrapper {
+	margin-top: 40px;
+	width: 1784px;
+	height: 654px;
+	position: relative;
+	overflow: hidden;
+}
+#listWrapper .content-inner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+#listWrapper .page {
+	width: 100%;
+	height: 654px;
+	padding: 10px 20px;
+}
+#listWrapper .page li {
+	float: left;
+	width: 420px;
+	height: 307px;
+	position: relative;
+	border-radius: 10px;
+	overflow: hidden;
+	transition: all ease .2s;
+}
+#listWrapper .page li:nth-child(1), #listWrapper .page li:nth-child(2), #listWrapper .page li:nth-child(3) {
+	margin-right: 20px;
+}
+#listWrapper .page li:nth-child(5), #listWrapper .page li:nth-child(6), #listWrapper .page li:nth-child(7) {
+	margin-right: 20px;
+	margin-top: 20px;
+}
+#listWrapper .page li:last-child {
+	margin-top: 20px;
+}
+#listWrapper .active {
+	transform: scale(1.06);
+	border: 3px solid #fff;
+}
+#listWrapper .wrapper ul li img {
+	width: 100%;
+	height: 100%;
+}
+#listWrapper .label {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	font-size: 26px;
+	height: 70px;
+	line-height: 70px;
+	background: #27283f;
+	padding-left: 10px;
+}

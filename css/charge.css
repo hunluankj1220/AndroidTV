@@ -1,0 +1,195 @@
+
+/* wrapper */
+.wrapper {
+	width: 100%;
+	height: 467px;
+	background: url('../images/charge-bg.png') no-repeat;
+	background-size: cover;
+	font-size: 20px;
+}
+/* left */
+.left {
+	float: left;
+	width: 320px;
+	padding-top: 52px;
+	padding-left: 37px;
+}
+.card {
+	margin-bottom: 14px;
+}
+.left-money {
+	margin-bottom: 26px;
+}
+.tips {
+	width: 266px;
+	font-size: 20px;
+}
+.wx-tip {
+	margin-bottom: 18px;
+}
+.tip {
+	line-height: 30px;
+}
+
+/* right */
+.right {
+	float: left;
+	width: 840px;
+	height: 100%;
+}
+.focus {
+	transition: all ease .2s;
+	width: 208px;
+	height: 143px;
+	position: relative;
+}
+.charge-box {
+	width: 100%;
+	height: 100%;
+	padding-top: 70px;
+}
+.charge-money {
+	width: 860px;
+	margin: 0 auto;
+	padding-left: 50px;
+}
+.margin-middle {
+	margin: 0 50px;
+}
+.margin-top {
+	margin-top: 40px;
+}
+.charge-money ul li {
+	float: left;
+}
+.pay-other {
+	background: url('../images/pay-other.png') no-repeat;
+	text-align: center;
+	line-height: 143px;
+	font-size: 24px;
+	color: #fff;
+}
+.pay-other-active {
+	background: url('../images/pay-other-active.png') no-repeat;
+	transform: scale(1.2);
+	background-size: cover;
+}
+.pay-50 {
+	background: url('../images/pay-50.png') no-repeat;
+	background-size: cover;
+}
+.pay-50-active {
+	background: url('../images/pay-50-active.png') no-repeat;
+	transform: scale(1.2);
+	background-size: cover;
+}
+.pay-100 {
+	background: url('../images/pay-100.png') no-repeat;
+	background-size: cover;
+}
+.pay-100-active {
+	background: url('../images/pay-100-active.png') no-repeat;
+	transform: scale(1.2);
+	background-size: cover;
+}
+.pay-300 {
+	background: url('../images/pay-300.png') no-repeat;
+	background-size: cover;
+}
+.pay-300-active {
+	background: url('../images/pay-300-active.png') no-repeat;
+	transform: scale(1.2);
+	background-size: cover;
+}
+.pay-500 {
+	background: url('../images/pay-500.png') no-repeat;
+	background-size: cover;
+}
+.pay-500-active {
+	background: url('../images/pay-500-active.png') no-repeat;
+	transform: scale(1.2);
+	background-size: cover;
+}
+.pay-1000 {
+	background: url('../images/pay-1000.png') no-repeat;
+	background-size: cover;
+}
+.pay-1000-active {
+	background: url('../images/pay-1000-active.png') no-repeat;
+	transform: scale(1.2);
+	background-size: cover;
+}
+
+.xieyi {
+	text-align: center;
+	font-size: 16px;
+	margin-top: 20px;
+}
+.check-box {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	border: 2px solid #fff;
+	vertical-align: bottom;
+}
+.check-box img {
+	width: 16px;
+	height: 20px;
+}
+.focus7-active {
+	border: 2px solid #f6fc70;
+}
+.focus8-active {
+	color: #f6fc70;
+	text-decoration: underline;
+}
+.xieyi-box {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	font-size: 18px;
+	position: relative;
+}
+.xieyi-box .title {
+	text-align: center;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.xieyi-box p {
+	line-height: 30px;
+}
+.xieyi-box ul{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 3440px;
+}
+.xieyi-box ul li {
+	width: 860px;
+	height: 467px;
+	float: left;
+	padding: 12px;
+}
+
+.pages {
+	position: absolute;
+	left: 0;
+	bottom: 10px;
+	width: 100%;
+	text-align: center;
+}
+.page-num {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	background: #354D7D;
+	border-radius: 5px;
+}
+.page-active {
+	background: #94A1BA;
+}
+

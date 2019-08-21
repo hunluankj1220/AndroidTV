@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/public.css">
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_722106_087fxxh16x4e.css">
+	<link rel="stylesheet" href="./css/home.css">
+	<style></style>
+</head>
+
+<body>
+	<div class="main">
+		<!-- header -->
+		<script src="./public/header.js"></script>
+		<!-- wrapper -->
+		<div id="wrapper" class="wrapper" style="margin-top: 40px">
+			<div id='detailWrapper' class='detail-wrapper clear'>
+				<!-- load-wrapper -->
+				<div class='load-wrapper clear'>
+					<div class='left'>
+						<img id='goodUrl' src='./images/detail.png' alt=''>
+					</div>
+					<div class='right'>
+						<p id='goodTitle' class='title'>凤求凰</p>
+						<div class='info clear'>
+							<p class='item'>商品介绍:</p>
+							<p id='goodInfo' class='content'></p>
+						</div>
+						<div class='info clear'>
+							<p class='item'>商品价格:</p>
+							<p id='goodPrice' class='content yellow'></p>
+						</div>
+						<div class='info clear'>
+							<p class='item wxtips'>温馨提示:</p>
+							<p id='goodTip' class='content wxtips'></p>
+						</div>
+						<div class='btns'>
+							<span id='order' class='order btn d-active'>订购</span>
+							<span id='cancel' class='cancel btn'>取消</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 模拟 -->
+	<!-- <div class="control">
+			<div id="quit" class="quit">quit</div>
+			<div id="up" class="up">up</div>
+			<div id="down" class="down">down</div>
+			<div id="left" class="left">left</div>
+			<div id="right" class="right">right</div>
+			<div id="ok"  class="ok">ok</div>
+		</div> -->
+	</div>
+	<script src="./public/jquery.js"></script>
+	<script src="./public/port.js"></script>
+	<script src="./js/public.js"></script>
+	<script>
+		// 隐藏搜索按钮
+		$('.search').addClass('hidden');
+		// 解析参数
+		var goodsid = parseQuery().goodsid;
+		var currentFocus = parseQuery().focus;
+		$(function () {
+			// 展示加载动画
+			detailLoading();
+			// 查询详情
+			getGoodDetail(goodsid, 'home');
+			setQuitToAndr('false');
+		})
+
+		/* focus control */
+		var detailFocus = '';
+		// doLeft
+		function doLeft() {
+			switch (detailFocus) {
+				case 'order':  //订购
+					dCancel();  //移除添加的类
+					detailFocus = 'cancel';   //取消
+					dSelected();   //添加类
+					break;
+				case 'cancel':
+					dCancel();
+					detailFocus = 'order';
+					dSelected();
+					break;
+			}
+		}
+
+		// doright
+		function doRight() {
+			switch (detailFocus) {
+				case 'order':
+					dCancel();  //移除添加的类
+					detailFocus = 'cancel'; 
+					dSelected();
+					break;
+				case 'cancel':
+					dCancel();
+					detailFocus = 'order';
+					dSelected();
+					break;
+			}
+		}
+
+		// doEnter
+		function doEnter() {
+			switch (detailFocus) {
+				case 'order':
+					var orderinfo = $('#order').attr('data-order');
+					var goodsid = $('#order').attr('data-goodsid');
+					getOrder(orderinfo, goodsid);
+					break;
+				case 'cancel':
+					window.location.href = './home.html?focus=' + currentFocus;
+					break;
+			}
+		}
+
+		// doQuit
+		function doQuit() {
+			window.location.href = './home.html?focus=' + currentFocus;
+		}
+
+		// 详情加载中
+		function detailLoading() {
+			$('.load-wrapper .left').css('opacity', 0);
+			$('.load-wrapper .right').css('opacity', 0);
+			loading();
+		}
+
+		// 详情加载完毕
+		function detailLoaded() {
+			$('.load-wrapper .left').css('opacity', 1);
+			$('.load-wrapper .right').css('opacity', 1);
+			loaded();
+			focusModel = 'detailModel';
+			detailFocus = 'order';
+			dSelected();
+		}
+	</script>
+</body>
+
+</html>

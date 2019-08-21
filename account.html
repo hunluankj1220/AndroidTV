@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/public.css">
+	<link rel="stylesheet" href="./css/account.css">
+</head>
+<body>
+	<div class="main">
+		<!-- header -->
+		<script src="./public/header.js"></script>
+		<!-- wrapper -->
+		<div class="wrapper clear ">
+			<div class="left load-wrapper">
+				<p class="info">
+					<img class="infoImg" src="./images/icon-account.png" alt="">
+					账户信息
+				</p>
+				<div class="info-wrapper">
+					<ul class="account-text">
+						<li>
+							<span class="name">账户</span>
+							<span id="account" class="value">**********</span>
+
+							<div class="info-right hidden">
+								<span class="name">卡券</span>
+								<span id="cardRoll" class="value yellow">******</span>
+							</div>
+						</li>
+						<li>
+							<span class="name">姓名</span>
+							<span id="name" class="value">****</span>
+							<div id="rollPwd" class="info-right hidden">
+								<span class="name">密码</span>
+								<span class="value yellow">******</span>
+							</div>
+						</li>
+						<li>
+							<span class="name">电话</span>
+							<span id="phone" class="value">************</span>
+						</li>
+						<li>
+							<span class="name">智能卡片</span>
+							<span id="card" class="value">**************</span>
+						</li>
+						<li>
+							<span class="name">主副卡</span>
+							<span id="cardType" class="value">**</span>
+						</li>
+						<li>
+							<span class="name">余额</span>
+							<span id="money" class="value money yellow">****</span>元
+						</li>
+						<li>
+							<span class="name">家庭住址</span>
+							<span id="address" class="value">**********</span>
+						</li>
+						<li class="btn-box">
+							<span id="focus1" class="chargeBtn">充值</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				<img src="./images/wx-ma.png" alt="">
+				<p class="wx-txt">
+					<img src="./images/icon-wechat.png" alt="">
+					微信公众号
+				</p>
+				<img src="./images/app-ma.png" alt="">
+				<p class="app-txt">
+					<img src="./images/icon-phone.png" alt="">
+					手机app下载
+				</p>
+			</div>
+		</div>
+		<!-- file -->
+		<script src="./public/file.js"></script>
+		<!-- 模拟 -->
+		<!-- <div class="control">
+			<div id="up">up</div>
+			<div id="down">down</div>
+			<div id="left">left</div>
+			<div id="right">right</div>
+			<div id="ok">ok</div>
+		</div> -->
+	</div>
+	<script src="./public/jquery.js"></script>
+	<script src="./public/port.js"></script>
+	<script src="./js/public.js"></script>
+	<script src="./js/account.js"></script>
+	<script>
+		$('.file-account').addClass('file-active');
+	</script>
+</body>
+</html>

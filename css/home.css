@@ -1,0 +1,69 @@
+/* public */
+.focus {
+	transition: all ease .2s;
+	position: relative;
+	overflow: hidden;
+}
+.good-title {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 10px;
+	font-size: 18px;
+	background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,1));
+}
+.focus img {
+	width: 100%;
+	height: 100%;
+}
+.active {
+	transform: scale(1.08);
+	border: 3px solid #fff;
+	border-radius: 12px;
+	z-index: 999;
+}
+
+/* wrapper */
+.wrapper {
+	width: 100%;
+}
+.ml30 {
+	margin-left: 20px;
+}
+.top {}
+.top li {
+	float: left;
+}
+.focus1, .focus2 {
+	width: 463px;
+	height: 268px;
+}
+.focus2 {
+	margin: 0 15px;
+}
+.focus3, .focus4 {
+	width: 200px;
+	height: 124px;
+}
+.focus4 {
+	margin-top: 20px;
+}
+.bottom {
+	margin-top: 20px;
+}
+.bottom li {
+	float: left;
+}
+.focus5, .focus6 {
+	width: 144px;
+	height: 154px;
+}
+.focus6 {
+}
+.focus7, .focus8, .focus9 {
+	width: 263px;
+	height: 154px;
+}

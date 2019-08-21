@@ -1,0 +1,101 @@
+.hidden {
+	display: none;
+}
+
+/* wrapper */
+.wrapper {
+	width: 100%;
+	height: 467px;
+	background: url('../images/help-bg.png') no-repeat;
+	background-size: cover;
+}
+.item-box {
+	padding-top: 35px;
+	height: 193px;
+}
+.item-box li {
+	float: left;
+	width: 25%;
+	text-align: center;
+}
+.item-box li {
+	transition: all ease .2s;
+}
+.item-box .active {
+	transform: scale(1.2);
+}
+.item-box .active img {
+	border: 3px solid #fff;
+	border-radius: 50%;
+}
+
+.content {
+	height: 273px;
+	font-size: 20px;
+	position: relative;
+	overflow: hidden;
+}
+.content-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 4768px;
+	height: 100%;
+}
+.content-wrapper div {
+	width: 1192px;
+	float: left;
+	height: 100%;
+	padding: 33px 33px 0 33px;
+	position: relative;
+}
+.wx-ma {
+	position: absolute;
+	right: 500px;
+	top: 50px;
+}
+.content p {
+	line-height: 30px;
+}
+.problem-text {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.problem-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* width: 7175px; */
+	width: 5960px;
+	height: 200px;
+}
+.problem-wrapper li {
+	float: left;
+	width: 1192px;
+	height: 100%;
+	padding: 33px 33px 0 33px;
+}
+
+.problem-page {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.problem-page li {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	background: #354D7D;
+	border-radius: 5px;
+}
+.problem-page .page-active {
+	background: #94A1BA;
+}

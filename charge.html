@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/public.css">
+	<link rel="stylesheet" href="./css/charge.css">
+</head>
+<body>
+	<div class="main">
+		<!-- header -->
+		<script src="./public/header.js"></script>
+		<!-- wrapper -->
+		<div class="wrapper"> 
+			<!-- left-part -->
+			<div class="left">
+				<p class="card">智能卡号: <span id="card">**************</span></p>
+				<p class="left-money">余额: <span id="money" class="yellow">****</span>元</p>
+				<div class="tips">
+					<p class="wx-tip">温馨提示:</p>
+					<p class="tip">
+						1、 固定金额时，直接选择，按遥控器“确定”键进行充值。
+					</p>
+					<p class="tip">
+						2、 自定义金额时，请输入您要充值的金额，按遥控器“确认”键进行充值；按回退键可以删除输入的金额。
+					</p>
+					<p class="tip">
+						3、 低保，军属等享受特殊优惠政策客户，请到当地营业厅办理。
+					</p>
+				</div>
+			</div>
+			<!-- riht-part -->
+			<div class="right">
+				<!-- 充值框 -->
+				<div class="charge-box">
+					<div class="charge-money">
+						<ul class="clear">
+							<li id="focus1" class="focus pay-50"></li>
+							<li id="focus2" class="margin-middle focus pay-100"></li>
+							<li id="focus3" class="focus pay-300"></li>
+							<li id="focus4" class="margin-top focus pay-500"></li>
+							<li id="focus5" class="margin-middle margin-top focus pay-1000"></li>
+							<li id="focus6" class="margin-top focus pay-other">
+								其他金额
+							</li>
+						</ul>
+					</div>
+					<div class="xieyi">
+						<span id="focus7" class="check-box">
+							<img src="./images/icon-select.png" alt="">
+						</span>
+						我已阅读并同意<span id="focus8">充值相关协议</span>
+					</div>
+				</div>
+				<!-- 协议框 -->
+				<div class="xieyi-box hidden">
+					<ul id="xieyi" class="clear">
+						<li class="page-1">
+							<p class="title">湖南有线电视客户充值协议</p>
+							<p>
+								您好！感谢您通过湖南有线电视官方渠道进行缴费。在您进行缴费前，请认真阅读以下《湖南有线电视客户充值协议》（以下简称“本协议”）是湖南省有线电视网络（集团）股份有限公司（以下简称“湖南有线电视”）与湖南有线电视客户（以下简称“客户”或“您”）代扣服务的使用等相关事项所订立的有效合约。
+							</p>
+							<p>1. 特别提示</p>
+							<p>
+								客户通过网络页面点击确认或以其他方式选择接受本协议，即表示客户与湖南有线电视已达成协议并同意接受本协议的全部约定内容。在接受本协议之前，请您仔细阅读本协议的全部内容，如果您不同意本协议的任意内容，或者无法准确理解条款的解释，请不要进行后续操作。您继续使用本服务，视作您已充分理解并接受本协议所有条款。
+							</p>
+							<p>
+								续订续扣服务的定义：客户确认或以其他方式选择接受本协议，即认可续订续扣服务规则。续订续扣服务规则为当客户通过线下渠道订购的产品到期后，客户预存账户参照客户上一订购套餐进行扣费，当预存账户不足上一套餐金额时，客户将处于暂停状态。当客户到线下实体店修改套餐后，系统将会按新套餐续订续扣。
+							</p>
+							<p>2. 服务说明</p>
+							
+						</li>
+						<li class="page-2">
+							<p>
+								2.1 本协议的具体内容由湖南有线电视根据实际情况提供。湖南有线电视保留随时变更、中断或终止部分或全部缴费服务的权利。
+							</p>
+							<p>
+								2.2 客户的智能卡下可能存在欠费停或休眠业务，客户通过本系统缴费时可能导致部分休眠业务被激活，从而产生额外扣费。
+							</p>
+							<p>3. 使用规则</p>
+							<p>客户进行缴费操作后，如需要查询，可浏览相关栏目或拨打96531查询。</p>
+								<p>4. 免责声明</p>
+								<p>
+									4.1 若湖南有线电视已经明示其网络服务提供方式发生变更并提醒客户应当注意事项，客户未按要求操作所产生的一切后果由客户自行承担。
+								</p>
+								<p>
+									4.2 客户明确同意其使用湖南有线电视服务所存在的风险将完全由其自己承担；因其使用湖南有线电视服务而产生的一切后果也由其自己承担，湖南有线电视对客户不承担任何责任。
+								</p>
+								<p>
+									4.3 客户信息（身份证号码、智能卡号等）由客户负责保管，客户通过以上信息进行缴费操作后，均视为客户亲自办理，并由客户负责。
+								</p>
+								<p>
+									4.4 湖南有线电视不担保网络服务一定能满足客户的要求，也不担保网络服务不会中断，对网络服务的及时性、安
+								</p>
+						</li>
+						<li class="page-3">
+							<p>全性、准确性也都不作担保。</p>
+							<p>5. 违约赔偿</p>
+							<p>客户同意保障和维护湖南有线电视及其他客户的利益，如因客户违反有关法律、法规或本协议项下的任何条款而给湖南有线电视或任何其他第三人造成损失，客户同意承担由此造成的损害赔偿责任。</p>
+							<p>6. 修改协议</p>
+							<p>6.1 湖南有线电视将可能不时的修改本协议的有关条款，一旦条款内容发生变动，湖南有线电视将会在相关的页面提示修改内容。</p>
+							<p>6.2 如果不同意湖南有线电视对服务条款所做的修改，客户有权停止使用网络服务。如果客户继续使用网络服务，则视为客户接受服务条款的变动。</p>
+							<p>7. 法律管辖</p>
+							<p>7.1本协议的订立、执行和解释及争议的解决均应适用中国法律。</p>
+							<p>7.2 如双方就本协议内容或其执行发生任何争议，双方应尽量友好协商解决；协商不成时，任何一方均可向湖南省有线电视网络（集团）股份有限公司所在地的人民法院提起诉讼。</p>
+							<p>8. 通知和送达</p>
+						</li>
+						<li class="page-4">
+							<p>本协议项下所有的通知均可通过重要页面公告、电子邮件或常规的信件传送等方式进行；该等通知于发送之日视为已送达收件人。</p>
+							<p>9. 其他规定</p>
+							<p>9.1 本协议构成双方对本协议之约定事项及其他有关事宜的完整协议，除本协议规定的之外，未赋予本协议各方其他权利。</p>
+							<p>9.2 如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有效并且有约束力。</p>
+							<p>9.3 官方缴费系统的所有权和运作权，及经营权归湖南省有线电视网络（集团）股份有限公司，客户必须完全同意所有服务条款，才可以办理本系统的各类业务。</p>
+						</li>
+					</ul>
+					<div class="pages">
+						<span class="page-num page-num-1">1</span>
+						<span class="page-num page-num-2">2</span>
+						<span class="page-num page-num-3">3</span>
+						<span class="page-num page-num-4">4</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- file -->
+		<script src="./public/file.js"></script>
+		<!-- 模拟 -->
+		<!-- <div class="control">
+			<div id="up">up</div>
+			<div id="down">down</div>
+			<div id="left">left</div>
+			<div id="right">right</div>
+			<div id="ok">ok</div>
+			<div id="quit">quit</div>
+		</div> -->
+	</div>
+	<!-- 模态框 -->
+	<div class="modelOver">
+		<div class="alertBox">
+			<p>温馨提示</p>
+			<p id="wxtips" class="wxtips"></p>
+			<div class="alertBtn">
+				<img src="./images/confirm-btn.png" alt="">
+			</div>
+		</div>
+	</div>
+	<script src="./public/jquery.js"></script>
+	<script src="./public/port.js"></script>
+	<script src="./js/public.js"></script>
+	<script src="./js/charge.js"></script>
+	<script>
+		$('.file-charge').addClass('file-active');
+		$('.btn').click(function(){
+			getFocus('focus1');
+		});
+		$('.btn1').click(function(){
+			loseFocus('focus1');
+		});
+	</script>
+</body>
+</html>
