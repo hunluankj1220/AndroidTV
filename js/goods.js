@@ -1,13 +1,13 @@
-/* focus-control */
 
-/* 焦点模式 */
-// *fileModel/主菜单模式
-// *menuModel/左侧菜单模式
-// *mainModel/主模式
-// *listModel/列表模式
-// *detailModel/详情模式
-// *yuyueModel/预约模式
-// *noGoods/产品包内无商品
+// focus-control 
+// 焦点模式 
+// fileModel主菜单模式
+// menuModel左侧菜单模式
+// mainModel主模式
+// listModel列表模式
+// detailModel详情模式
+// yuyueModel预约模式
+// noGoods产品包内无商品
 var focusModel = 'fileModel';
 // init focus
 var detailFocus = '';
@@ -21,8 +21,6 @@ var listToDetail = false; // 是否从list列表模式进入详情模式
 var detailList = [];
 var detailStatus = '';
 var detailListWrap = '';
-
-
 // channel get focus
 function channelGetFocus () {
 	$('#' + focus).addClass('channel-active');
@@ -47,7 +45,9 @@ function selected () {
 			$('#' + listFocus).addClass('actives');
 			break;
 		case 'goodsDetails':
-      var str = `${detailStatus}-${detailListWrap}`;
+// ....................................................................
+			//var str = `${detailStatus}-${detailListWrap}`;
+			var str = detailStatus + "-" + detailListWrap;
       $('#' + str ).addClass('active');
 			break;
 	}
@@ -302,13 +302,16 @@ function mainToFile () {
 	$('.file-goods').removeClass('file-lose');
 }
 
+
+//下面试按钮组件
 // doLeft
 function doLeft () {
+
 	// 主菜单模式
-	if (focusModel == 'fileModel') {
-		window.location.href = './charge.html';
-		// 主模式
-	} else if (focusModel == 'mainModel') {
+	if (focusModel == 'fileModel') {// fileModel主菜单模式
+		 window.location.href = './charge.html';
+		
+	} else if (focusModel == 'mainModel') {	// 主模式
 		switch (focus) {
 			case 'page' + curPage + '-focus1':
 				// 判断是否进入上页
@@ -372,7 +375,8 @@ function doLeft () {
 				break;
 		}
 		// 详情模式
-	} else if (focusModel == 'detailModel') {
+	} else if (focusModel == 'detailModel') {// detailModel详情模式
+		
 		switch (detailFocus) {
 			case 'order':
 				dCancel();
@@ -408,7 +412,8 @@ function doLeft () {
 				break;
 		}
 		// 列表模式
-	}  else if (focusModel == 'listModel') {
+	}  else if (focusModel == 'listModel') {// listModel列表模式
+		
 		switch (listFocus) {
 			case 'list-focus2':
 				if (hasList('list-focus1')) {
@@ -443,20 +448,24 @@ function doLeft () {
 				}
 				break;
 		}
-	} else if (focusModel === 'goodsDetails') {
+ 	} else if (focusModel === 'goodsDetails') {
+		
     if (detailListWrap && detailListWrap === 'listWrap') {
-      detailFocus = `${detailStatus}-listWrap`;
+			//detailFocus = `${detailStatus}-listWrap`;
+			detailFocus = detailStatus + "-listWrap";
       dCancel();
-      const num = detailList.indexOf(detailStatus);
-      const str = detailList[num -1];
-
+      var num = detailList.indexOf(detailStatus);
+      var str = detailList[num -1];
+//............................................................................................
       if (str) {
         detailStatus = str;
-        detailFocus = `${str}-listWrap`;
+				//detailFocus = `${str}-listWrap`;
+				detailFocus = str + "-listWrap";
       } else {
-        const str = detailList[num + 1];
+        var str = detailList[num + 1];
         detailStatus = str;
-        detailFocus = `${str}-listWrap`;
+				//detailFocus = `${str}-listWrap`;
+				detailFocus = str + "-listWrap";
       }
       dSelected();
       tabChangeList();
@@ -617,20 +626,26 @@ function doRight () {
 				}
 				break;
 		}
-	} else if (focusModel === 'goodsDetails') {
+ 	} else if (focusModel === 'goodsDetails') {
     if (detailListWrap && detailListWrap === 'listWrap') {
-      detailFocus = `${detailStatus}-listWrap`;
+		 // detailFocus = `${detailStatus}-listWrap`;
+		 //detailFocus = detailStatus + "-listWrap";
+		 detailFocus = (detailStatus + "-listWrap");
       dCancel();
-      const num = detailList.indexOf(detailStatus);
-      const str = detailList[num + 1];
-
+      var num = detailList.indexOf(detailStatus);
+      var str = detailList[num + 1];
+//....................................................................................................
       if (str) {
         detailStatus = str;
-        detailFocus = `${str}-listWrap`;
+				//detailFocus = `${str}-listWrap`;
+				//detailFocus = str + "-listWrap";
+				detailFocus = (detailStatus + "-listWrap");
       } else {
-        const str = detailList[num - 1];
+        var str = detailList[num - 1];
         detailStatus = str;
-        detailFocus = `${str}-listWrap`;
+			 // detailFocus = `${str}-listWrap`;
+			 //detailFocus = str + "-listWrap";
+			 detailFocus = (detailStatus + "-listWrap");
       }
       dSelected();
       tabChangeList();
@@ -716,7 +731,18 @@ function doEnter () {
 				// 弹出预约框
 				focusModel = 'yuyueModel';
 				$('.xudingtipModal').addClass('xdtipshow');
-				setTimeout(() => {
+				// setTimeout(() => {
+				// 	var cacard = $('#yuyue').attr('data-cacard');
+				// 	var goodsid = $('#yuyue').attr('data-goodsid');
+				// 	$('#qrcode').qrcode({
+				// 		// render: 'table',// canvas
+				// 		// width: 200,
+				// 		// height: 200,
+				// 		// correctLevel: 0,
+				// 		text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
+				// 	});
+				// }, 200);
+				setTimeout(function(){
 					var cacard = $('#yuyue').attr('data-cacard');
 					var goodsid = $('#yuyue').attr('data-goodsid');
 					$('#qrcode').qrcode({
@@ -724,9 +750,9 @@ function doEnter () {
 						// width: 200,
 						// height: 200,
 						// correctLevel: 0,
-						text: 'http://testapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
-					});
-				}, 200);
+						text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
+					})
+					},200)
 				break;
 		}
 		// 列表模式
@@ -802,7 +828,7 @@ function doQuit () {
 			focusModel = 'mainModel';
 			hideDetail();
 		}
-	} else if (focusModel == 'fileModel') {
+	} else if (focusModel == 'fileModel' || focusModel == 'menuModel' || focusModel == 'mainModel') {
 		// 返回到首页
 		window.location.href = './home.html';
 	} else if (focusModel == 'goodsDetails') {
@@ -833,6 +859,8 @@ function toPage (page) {
 	},300);
 }
 
+
+
 /* 数据加载 */
 $(function(){
 	// 页面初次加载
@@ -842,9 +870,9 @@ $(function(){
 	// 向安卓传递数据
 	setQuitToAndr('false');
 });
-
 // 初始化左侧菜单模板
 function initMenuTemp (menus) {
+	console.log(menus)
 	var html = '';
 	for (var i = 0; i < menus.length; i++) {
 		html += '<li id="channel-focus'+ (i+1) +'" data-code="'+ menus[i].clsid +'" class="file-channel">'
@@ -940,6 +968,7 @@ function initListTemp (data) {
 		if (data.list && data.list.length > 0 ) {
 			var info = data.info;
 			$('#gd-goodUrl').attr('src', info.picture);
+			$('#nicnoe').attr('src',info.picture)
 			$('#gd-goodTitle').html(info.name);
 			$('#gd-goodInfo').html(limitLength(info.goodsdesc));
 			// 展示listWrapper
@@ -949,14 +978,15 @@ function initListTemp (data) {
 			$('.search').css('display', 'none');
 			$('#gd-goodPrice').html(data.list[0].skudesc);
       focusModel = 'goodsDetails';
-      detailListWrap = `listWrap`;
+			//detailListWrap = `listWrap`;
+			detailListWrap = 'listWrap';
 			detailStatus = data.list[0].goodsid;
 			//新改动态生成温馨提示
-			const mindeposite = data.list[0].mindeposite;
-			const skudesc = data.list[0].skudesc;
+			var mindeposite = data.list[0].mindeposite;
+			var skudesc = data.list[0].skudesc;
 			$('#gd-goodTip').text('')
       if(mindeposite != null && mindeposite > 0){
-				let text = '  1.该商品是属于优惠活动产品，需预存' + skudesc + '。';
+				var text = '  1.该商品是属于优惠活动产品，需预存' + skudesc + '。';
 				$('#gd-goodTip').html(text);				
 			}
 		// 	if(mindeposite){	// 0 '' false null undefined NaN
@@ -975,28 +1005,37 @@ function initListTemp (data) {
 				'http://mobileapp.hunancatv.com/images/3.png',
 				'http://mobileapp.hunancatv.com/images/4.png'
 			]
-			data.list.forEach((items,index) => {
-        detailList.push(items.goodsid);
-				goodsList[items.goodsid] = items;
-				// var prefix = items.priceUnit.startsWith('立减') ? '' : '<span>￥</span>';
-				var  monthPrefix= (items.customPrice.length<=5) ? items.customPrice.substr(0,3) : items.customPrice.substr(0,4)
+	// 		data.list.forEach((items,index) => {
+  //       detailList.push(items.goodsid);
+	// 			goodsList[items.goodsid] = items;
+	// 			// var prefix = items.priceUnit.startsWith('立减') ? '' : '<span>￥</span>';
+	// 			// var  monthPrefix= (items.customPrice.length<=5) ? items.customPrice.substr(0,3) : items.customPrice.substr(0,4)
 
-				var  prefix= (items.customPrice.length<=5) ? items.customPrice.substr(3,3) : items.customPrice.substr(4,3)
-
-				//新改循环生成列表
-        html += `<li ><div id="list-focus${index+1}" data-mindeposite="${items.mindeposite}"  data-skudesc="${items.skudesc}"  data-id="${items.goodsid}">
-							<img src="${imgUrls[index]}" alt="">
-							<div class="butto-price">
-							<p class="originalPrice">原价${ items.priceUnit}</p>
-							<p class="monthPackage">${items.timePrice}</p>
-							<p class="presentPrice"><span>现价</span><span class="getsPrice">${monthPrefix}</span> <span>${prefix}</span></p>
-							</div>
-							</div>
-							</li>`
-			})
-
-			
-			
+	// 			// var  prefix= (items.customPrice.length<=5) ? items.customPrice.substr(3,3) : items.customPrice.substr(4,3)
+	// 			 var arr = items.customPrice.split('/')//split() 方法用于把一个字符串分割成字符串数组。
+	//        var monthPrefix = arr.length?(arr[0]+'/'):''
+	//        var prefix = arr.length?arr[1]:''
+	// 			//新改循环生成列表
+	// 	html += `<li ><div id="list-focus${index+1}" data-mindeposite="${items.mindeposite}"  data-skudesc="${items.skudesc}"  data-id="${items.goodsid}">
+	// 				<img src="${imgUrls[index]}" alt="">
+	// 				<div class="butto-price">
+	// 				<p class="originalPrice">原价${ items.priceUnit}</p>
+	// 				<p class="monthPackage">${items.timePrice}</p>
+	// 				<p class="presentPrice"><span>现价</span><span class="getsPrice" style='font-family:微软雅黑'><img style='display:inline-block;height:32px;vertical-align:baseline;margin-bottom: -3px;' src='http://tvstore.hunancatv.com:9090/images/rmb.png' />${monthPrefix}</span> <span>${prefix}</span></p>
+	// 				</div>
+	// 				</div>
+	// 				</li>`
+		//html += "<li ><div id=\"list-focus" + (index + 1) + "\" data-mindeposite=\"" + items.mindeposite + "\"  data-skudesc=\"" + items.skudesc + "\"  data-id=\"" + items.goodsid + "\">\n\t\t\t\t\t<img src=\"" + imgUrls[index] + "\" alt=\"\">\n\t\t\t\t\t<div class=\"butto-price\">\n\t\t\t\t\t<p class=\"originalPrice\">原价" + items.priceUnit + "</p>\n\t\t\t\t\t<p class=\"monthPackage\">" + items.timePrice + "</p>\n\t\t\t\t\t<p class=\"presentPrice\"><span>现价</span><span class=\"getsPrice\" style='font-family:微软雅黑'><img style='display:inline-block;height:32px;vertical-align:baseline;margin-bottom: -3px;' src='http://tvstore.hunancatv.com:9090/images/rmb.png' />" + monthPrefix + "</span> <span>" + prefix + "</span></p>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t</li>";
+//})
+		for(var i=0;i<data.list.length;i++){
+		console.log(data.list)
+		detailList.push(data.list[i].goodsid);
+		goodsList[data.list[i].goodsid] = data.list[i];
+		var arr = data.list[i].customPrice.split('/')//split() 方法用于把一个字符串分割成字符串数组。
+		var monthPrefix = arr.length?(arr[0]+'/'):''
+		var prefix = arr.length?arr[1]:''
+		html += "<li ><div id=\"list-focus" + (i + 1) + "\" data-mindeposite=\"" + data.list[i].mindeposite + "\"  data-skudesc=\"" + data.list[i].skudesc + "\"  data-id=\"" + data.list[i].goodsid + "\">\n\t\t\t\t\t<img src=\"" + imgUrls[i] + "\" alt=\"\">\n\t\t\t\t\t<div class=\"butto-price\">\n\t\t\t\t\t<p class=\"originalPrice\">原价" + data.list[i].priceUnit + "</p>\n\t\t\t\t\t<p class=\"monthPackage\">" + data.list[i].timePrice + "</p>\n\t\t\t\t\t<p class=\"presentPrice\"><span>现价</span><span class=\"getsPrice\" style='font-family:微软雅黑'><img style='display:inline-block;height:32px;vertical-align:baseline;margin-bottom: -3px;' src='http://tvstore.hunancatv.com:9090/images/rmb.png' />" + monthPrefix + "</span> <span>" + prefix + "</span></p>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t</li>";
+		}
 			// <div class="listWrap" id="${items.goodsid}-listWrap">
 			// 			<div class="number">${ items.priceUnit}</div>
 			// 			<div class="year">  ${ items.timePrice} </div>						
@@ -1024,9 +1063,9 @@ function initListTemp (data) {
 function tabChangeList() {
 		if (goodsList[detailStatus]) {
       $('#gd-goodPrice').html(goodsList[detailStatus].skudesc ? goodsList[detailStatus].skudesc : '');
-			const  mindeposite = goodsList[detailStatus].mindeposite;
-			const  skudesc = goodsList[detailStatus].skudesc;
-      let text = '';
+			var  mindeposite = goodsList[detailStatus].mindeposite;
+			var  skudesc = goodsList[detailStatus].skudesc;
+      var text = '';
       if(mindeposite != null && mindeposite > 0){
         text += '  1.该商品是属于优惠活动产品，需预存' + skudesc + '。';
 			}

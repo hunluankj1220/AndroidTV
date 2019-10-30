@@ -28,7 +28,7 @@
 							<p class='item'>商品介绍:</p>
 							<p id='goodInfo' class='content'></p>
 						</div>
-						<div class='info clear'>
+						<div class='info clear' id="goodsprice">
 							<p class='item'>商品价格:</p>
 							<p id='goodPrice' class='content yellow'></p>
 						</div>
@@ -38,25 +38,40 @@
 						</div>
 						<div class='btns'>
 							<span id='order' class='order btn d-active'>订购</span>
+							<span id="yuyue" class="yuyue btn">预约</span>
 							<span id='cancel' class='cancel btn'>取消</span>
 						</div>
 					</div>
-				</div>
+								<!-- 模态框 -->
+		<div class="xudingtipModal">
+			<div class="xudingtip"  style='width:300px;height:375px;margin-left:-210px'>
+				<p class="title" >预定二维码</p>
+				<div id="qrcode"></div>
+				<p class="btn" style='margin-top:60px'>
+					<img src="./images/confirm-btn.png" alt="">
+				</p>
 			</div>
 		</div>
+				</div>
+			</div>
+	
+		</div>
+		
 		<!-- 模拟 -->
-	<!-- <div class="control">
+	<div class="control">
 			<div id="quit" class="quit">quit</div>
 			<div id="up" class="up">up</div>
 			<div id="down" class="down">down</div>
 			<div id="left" class="left">left</div>
 			<div id="right" class="right">right</div>
 			<div id="ok"  class="ok">ok</div>
-		</div> -->
+		</div>
+	
 	</div>
 	<script src="./public/jquery.js"></script>
 	<script src="./public/port.js"></script>
 	<script src="./js/public.js"></script>
+	<script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 	<script>
 		// 隐藏搜索按钮
 		$('.search').addClass('hidden');
@@ -72,37 +87,82 @@
 		})
 
 		/* focus control */
-		var detailFocus = '';
+		// var detailFocus = ($('#order').css('display') == 'none')?'yuyue':'order';
 		// doLeft
 		function doLeft() {
 			switch (detailFocus) {
-				case 'order':  //订购
-					dCancel();  //移除添加的类
-					detailFocus = 'cancel';   //取消
-					dSelected();   //添加类
-					break;
-				case 'cancel':
+			case 'order':
+				dCancel();
+				detailFocus = 'cancel';
+				dSelected();
+				break;
+			case 'cancel':
+				if ($('#yuyue').css('display') == 'none') {
+					// 没有预约
 					dCancel();
 					detailFocus = 'order';
 					dSelected();
-					break;
-			}
-		}
+				} else {
+					// 有预约
+					dCancel();
+					detailFocus = 'yuyue';
+					dSelected();
+				}
+				break;
+			case 'yuyue':
+				if ($('#order').css('display') == 'none') {
+					// 没有订购
+					dCancel();
+					detailFocus = 'cancel';
+					dSelected();
+				} else {
+					// 有订购
+					dCancel();
+					detailFocus = 'order';
+					dSelected();
+				}
 
+				break;
+		}
+			
+		}
 		// doright
 		function doRight() {
-			switch (detailFocus) {
-				case 'order':
-					dCancel();  //移除添加的类
-					detailFocus = 'cancel'; 
+			
+		switch (detailFocus) {
+			case 'order':
+				// 判断是否有预约按钮
+				if ($('#yuyue').css('display') == 'none') {
+					// 没有预约按钮
+					dCancel();
+					detailFocus = 'cancel';
 					dSelected();
-					break;
-				case 'cancel':
+				} else {
+					// 有预约按钮
+					dCancel();
+					detailFocus = 'yuyue';
+					dSelected();
+				}
+				break;
+			case 'yuyue':
+				dCancel();
+				detailFocus = 'cancel';
+				dSelected();
+				break;
+			case 'cancel':
+				// 没有订购按钮
+				if ($('#order').css('display') == 'none') {
+					dCancel();
+					detailFocus = 'yuyue';
+					dSelected();
+				} else {
+					// 有订购按钮
 					dCancel();
 					detailFocus = 'order';
 					dSelected();
-					break;
-			}
+				}
+				break;
+		}
 		}
 
 		// doEnter
@@ -116,6 +176,24 @@
 				case 'cancel':
 					window.location.href = './home.html?focus=' + currentFocus;
 					break;
+				case 'yuyue':
+				if (focusModel == 'detailModel') {
+					focusModel = 'yuyueModel';
+					$('.xudingtipModal').addClass('xdtipshow');
+					setTimeout(function(){
+					var cacard = $('#yuyue').attr('data-cacard');
+					var goodsid = $('#yuyue').attr('data-goodsid');
+					$('#qrcode').qrcode({
+						text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
+					})
+					},200)
+				}else{
+					focusModel = 'detailModel';
+					$('.xudingtipModal').removeClass('xdtipshow');
+					$('#qrcode').html('');
+				}
+				
+				break;
 			}
 		}
 
@@ -137,7 +215,7 @@
 			$('.load-wrapper .right').css('opacity', 1);
 			loaded();
 			focusModel = 'detailModel';
-			detailFocus = 'order';
+			detailFocus = ($('#order').css('display') == 'none')?'yuyue':'order';
 			dSelected();
 		}
 	</script>

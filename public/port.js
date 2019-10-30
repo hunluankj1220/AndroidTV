@@ -18,8 +18,8 @@ var favourSku = '';
 
 // 智能卡
  var cacard;
-// var cacard = '8731204033495729';   //正式环境卡号
-//var cacard = '8731204033541662';     // 测试环境卡号
+ var cacard = '8731204033495729';   //正式环境卡号--正式环境需注释
+// var cacard = '8731204033541662';     // 测试环境卡号
 
 // var cacard = '8731202953056323';
 // var cacard = '8731202245224473';
@@ -36,11 +36,12 @@ function getCardFromAd () {
 		cacard = card;
 	} 
 }
-getCardFromAd();
+//正式环境需放出来
+// getCardFromAd();
 
 
 
-// // 获取智能卡号
+// 获取智能卡号
 // function getCardFromAd () {
 // 	var card = undefined//jsObject.getCardNumber();
 // 	if (card) {
@@ -120,14 +121,23 @@ function getGoodDetail (tag,originHtml) {
 				if(info.isvalid == 1){
 					text = '尊敬的客户，您的基本业务为非正常状态，请先充值再订购，如有疑问请联系96531。';
 				}else{
-					if(info.isOrder == 1){
-						text += '1.该商品您已订购，可直接收看，如继续选择订购，则默认为续订。';
+					if(info.isMake==2 && info.isActivity==2){
+						if(info.isOrder == 1){
+							text += '1.该商品属于预约产品，点击预约，微信扫描二维码可预约。';
+						}else{
+							text += '1.该商品属于预约产品，点击预约，微信扫描二维码可预约。';
+						}	
 					}else{
-						text += '1.按月订购的产品，如果不退订产品，默认按月自动续订。';
+						if(info.isOrder == 1){
+							text += '1.该商品您已订购，可直接收看，如继续选择订购，则默认为续订。';
+						}else{
+							text += '1.按月订购的产品，如果不退订产品，默认按月自动续订。';
+						}
+						if(info.mindeposite != null && info.mindeposite > 0){
+							text += '  2.该商品是属于优惠活动产品，需预存' + info.skudesc + '。';
+						}
 					}
-					if(info.mindeposite != null && info.mindeposite > 0){
-						text += '  2.该商品是属于优惠活动产品，需预存' + info.skudesc + '。';
-					}
+					
 				}
 				$('#goodTip').html(text);
 			} else  {
@@ -297,6 +307,7 @@ function getMenu () {
 				// 如果带有定位参数
 				if (parseQuery(window.location)) {
 					var code = parseQuery(window.location).code;
+					console.log(code)
 					for (var i = 0; i < data.data.list.length; i++) {
 						if (code == data.data.list[i].clsid) {
 							// 选中li
@@ -320,6 +331,7 @@ function getMenu () {
 }
 // 根据channelCode请求商品
 function getChannel (channelCode) {
+	console.log(channelCode)//02 优惠活动
 	$.ajax({
 		url: goodsUrl,
 		data: {
@@ -390,6 +402,7 @@ function getSearch (text) {
 }
 
 // 向安卓传递充值参数
+
 var setDataToAnd = function (url) {
 	jsObject.payInterface(url);
 }
@@ -420,7 +433,7 @@ function getCharge (money) {
 					urlStr += '&' + key + '=' + req[key]
 				}
 			}
-			// alert(urlStr);
+			alert(urlStr)
 			setDataToAnd(urlStr);
 		},
 		error: function (error) {
@@ -447,7 +460,7 @@ function getOrder (orderInfo,goodsid) {
 		success: function (data) {
 			// 开始url拼接
 			console.log(data);
-			debugger
+			//debugger
 			var url = data.url;
 			var req = JSON.parse(data.returnReq);
 			// 对req的内容进行转换
@@ -462,6 +475,8 @@ function getOrder (orderInfo,goodsid) {
 					urlStr += '&' + key + '=' + req[key]
 				}
 			}
+			//alert(urlStr)
+			console.log('url',urlStr)
 			setDataToAnd(urlStr);
 		},
 		error: function (error) {
