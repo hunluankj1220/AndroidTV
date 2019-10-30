@@ -1,9 +1,11 @@
-﻿$(function(){
+﻿
+$(function(){
 	setQuitToAndr('false');
 });
 
 /* focus control */
 var focus = 'key-1';
+console.log(focus)
 var t9Focus = ''; // t9输入法时小焦点
 selected();
 var searchText = '';
@@ -37,6 +39,7 @@ function tSelected () {
 		$('#' + focus).addClass('t-active');
 	}
 }
+
 function tCancel () {
 	if (focus == 't-1') {
 		$('#' + focus).removeClass('t-1-active');
@@ -1428,7 +1431,19 @@ function doEnter () {
 				// 弹出预约框
 				focusModel = 'yuyueModel';
 				$('.xudingtipModal').addClass('xdtipshow');
-				setTimeout(() => {
+				// setTimeout(() => {
+				// 	var cacard = $('#yuyue').attr('data-cacard');
+				// 	var goodsid = $('#yuyue').attr('data-goodsid');
+				// 	$('#qrcode').qrcode({
+				// 		render: 'table',// canvas 
+				// 		width: 200,
+				// 		height: 200,
+				// 		correctLevel: 0,
+				// 		text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
+				
+				// 	});
+				// }, 300);
+				setTimeout(function(){
 					var cacard = $('#yuyue').attr('data-cacard');
 					var goodsid = $('#yuyue').attr('data-goodsid');
 					$('#qrcode').qrcode({
@@ -1439,7 +1454,7 @@ function doEnter () {
 						text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
 				
 					});
-				}, 300);
+				},300)
 				break;
 		}
 		// 预约模式
@@ -1596,9 +1611,3 @@ function showGoodInfo () {
 	$('#good-pic').attr('src', pic);
 	$('.right').removeClass('hidden');
 }
-
-
-
-
-
-

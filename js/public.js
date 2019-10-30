@@ -1,7 +1,8 @@
+
 /* 公共方法 */
 // 退出安卓应用
 function setQuitToAndr (str) {
-	jsObject.quitApply(str);
+	// jsObject.quitApply(str);
 	return 'true';
 }
 
@@ -92,6 +93,7 @@ $(document).on('keydown', function(e){
 	}
 });
 // 模拟遥控器
+
 $('#down').click(function(){
 	doDown();
 });
@@ -160,7 +162,7 @@ function initName (str) {
 
 // active
 function dSelected () {
-	$('#' + detailFocus).addClass('active');
+	$('#' + detailFocus).addClass('active');//#也是选择器，这样写可以动态的绑定
 }
 
 // cancel
@@ -266,6 +268,7 @@ function startTime (ms) {
 		getinitTime(ms);
 	}, 1000*60);
 }
+
 
 
 

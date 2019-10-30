@@ -147,7 +147,7 @@
 	background-size: cover;
 	width: 650px;
 	position: absolute;
-	top: 30%;
+	top: 40%;
 	left: 50%;
 	margin-left: -325px;
 	border-radius: 10px;
@@ -186,7 +186,9 @@
 	border-radius: 3px;
 	position: relative;
 	vertical-align: middle;
-	margin-top: -5px;
+	/* margin-top: -5px; */
+	/* transform: translate(5px, -30px); */
+	margin-bottom: 77px;
 }
 .order-item .good-name {
 	width: 100px;

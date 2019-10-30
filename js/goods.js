@@ -8,7 +8,7 @@
 // detailModel详情模式
 // yuyueModel预约模式
 // noGoods产品包内无商品
-var focusModel = 'fileModel';
+ var focusModel = 'fileModel';
 // init focus
 var detailFocus = '';
 var focus = '';

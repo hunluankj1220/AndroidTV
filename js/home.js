@@ -5,7 +5,7 @@
 /* focus control */
 
 // 焦点模式 
-// *fileModel/菜单模式  *mainModel/主模式 *detailModel/详情模式 *listModel/列表模式 *statusModel/状态模式
+// *fileModel/菜单模式  *mainModel/主模式 *detailModel/详情模式 *listModel/列表模式 
 var focusModel = 'fileModel';   //把菜单模式负值给focusModel
 
 // init focus
@@ -61,12 +61,12 @@ function doUp() { //doUp函数用来切换模式
 		// 更换为主模式
 		focusModel = 'mainModel';
 		$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
-		focus = 'focus1';  //把focus1负值给focus
+		focus = 'focus1';  //把focus1id名负值给focus
 		selected();  //调用selected()判断focusMode传过来的参数在添加样式
 		// 主模式
 	} else if (focusModel == 'mainModel') { //传过来的focusModel== 主模式
 		switch (focus) {    // 主模式下的焦点
-			case 'focus1':
+			case 'focus1'://id名
 			case 'focus2':
 			case 'focus3':
 				cancel(); //cancel函数用来判断focusModel转过来的参数在取消样式
@@ -408,7 +408,6 @@ function doEnter() {
 				// var orderinfo = $('#order').attr('data-order');
 				// var goodsid = $('#order').attr('data-goodsid');
 				// getOrder(orderinfo,goodsid);
-				///////////
 				var goodsid = $('#order').attr('data-goodsid'); //通过#order 获取data-goodsid里面的属性值
 				var orderid = $('#order').attr('data-order'); //通过#order 获取  里面的属性值
 				var isOrder = $('#order').attr('data-isOrder');//通过#order 获取data-isOrder里面的属性值
@@ -478,7 +477,7 @@ function detailLoaded() {
 	$('.load-wrapper .left').css('opacity', 1);
 	$('.load-wrapper .right').css('opacity', 1);
 	loaded();
-	focusModel = 'detailModel';
+	focusModel = 'detailModel';//把类名赋值给变量，在public里面动态的绑定
 	detailFocus = 'order';
 	dSelected();
 }

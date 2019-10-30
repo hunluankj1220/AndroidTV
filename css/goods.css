@@ -287,45 +287,64 @@
 
 .detail-wrapper{
 	position: relative;
+	
 }
+
 .detail-wrapper .back .back-left{
 	display: flex;
 	align-items: center;
 	width: 52%;
-	height: 50px;
+  height: 50px; 
 	position: relative;
 }
-.detail-wrapper .back-left::after{
+/* .detail-wrapper .back-left::after{
 	content: ' ';
 	position: absolute;
 	bottom: 0px;
 	width: 100%;
 	height: 4px;
 	background-color: aquamarine;
-}
-.detail-wrapper .back .back-left >img{
+} */
+
+/* .detail-wrapper .back .back-left >img{
 	width: 25px;
 	height: 25px;
-}
+} */
+
+/* .add-img{
+	width: 0 !important;
+	height: 0 !important;
+} */
 .detail-wrapper .back .back-left >p{
 	margin: 10px;
 }
 .detail-wrapper .detail-img{
-	width: 605px;
-	height: 300px;
+	/* width: 605px;
+	height: 300px; */
+	width: 520px;
+	height: 293px;
+	margin-left: 40px;
 	-webkit-box-reflect:below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(0.5, transparent), to(rgba(250, 250, 250, 0.1)));
 	/* -webkit-box-reflect: below 0px -webkit-gradient(linear, left 0, left 20px, from(transparent), to(rgba(250, 250, 250, 0.5))); */
 }
 
 .detail-wrapper .load-wrappers .right{
 	position: absolute;
-	bottom: 308px;
+	/* bottom: 308px;  */
+	bottom: 305px;
 	right: -40px;
 }
+/* .righting{
+  right: 0px !important;
+} */
+/* .wxtips-two{
+	width: 390px !important;
+} */
 .detail-wrapper .butto-picture{
 	display: flex;
 	width: 100%;
-	margin-top: 30px;
+	/* margin-top: 30px; */
+	margin-top: 45px;
 }
 .detail-wrapper .butto-picture li{
 	margin-right: 40px;
@@ -348,7 +367,7 @@
  .originalPrice:before{
 	content: '';
 	position: absolute;
-	top: 10px;
+	top: 8px;
 	left: -10px;
 	text-decoration: line-through;
 	border-top: 3px solid #ccc;
@@ -378,7 +397,6 @@
 	border: 3px solid #fff;
 	z-index: 50;
 	border-radius:15px;
-
 	box-shadow: 10px 10px 10px rgba(0,0,0,.5);
 	
 }

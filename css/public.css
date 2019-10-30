@@ -465,10 +465,10 @@ body{
 #qrcode table {
 	margin: 10px auto;
 }
-/* 加载动画 */
+ /* 加载动画 */
 .load-wrapper {
 	position: relative;
-}
+} 
 #load-wrapper {
 	position: relative;
 }
