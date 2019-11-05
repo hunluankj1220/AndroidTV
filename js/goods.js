@@ -932,7 +932,8 @@ function initGoodsTemp (counts,lists) {
 						html += '<li data-goodsid='+ lists[j].goodsid +' id="page'+i+'-focus'+ (j+1-(6*(i-1))) +'">'
 					}
 					html += '<img src="'+ lists[j].picture +'" alt="">'
-						+ 	'<p class="goodname">'+ lists[j].goodsname +'</p>'
+						+ 	'<p class="goodname">'+ (lists[j].goodsid==='dP9Zamg6vcvS'?'智能机顶盒(老用户置换)':lists[j].goodsname)
+						 +'</p>'
 						+ '</li>';
 
 				}
@@ -968,7 +969,7 @@ function initListTemp (data) {
 		if (data.list && data.list.length > 0 ) {
 			var info = data.info;
 			$('#gd-goodUrl').attr('src', info.picture);
-			$('#nicnoe').attr('src',info.picture)
+			$('#nicnoe').attr('src',info.picture);
 			$('#gd-goodTitle').html(info.name);
 			$('#gd-goodInfo').html(limitLength(info.goodsdesc));
 			// 展示listWrapper
@@ -1028,13 +1029,17 @@ function initListTemp (data) {
 		//html += "<li ><div id=\"list-focus" + (index + 1) + "\" data-mindeposite=\"" + items.mindeposite + "\"  data-skudesc=\"" + items.skudesc + "\"  data-id=\"" + items.goodsid + "\">\n\t\t\t\t\t<img src=\"" + imgUrls[index] + "\" alt=\"\">\n\t\t\t\t\t<div class=\"butto-price\">\n\t\t\t\t\t<p class=\"originalPrice\">原价" + items.priceUnit + "</p>\n\t\t\t\t\t<p class=\"monthPackage\">" + items.timePrice + "</p>\n\t\t\t\t\t<p class=\"presentPrice\"><span>现价</span><span class=\"getsPrice\" style='font-family:微软雅黑'><img style='display:inline-block;height:32px;vertical-align:baseline;margin-bottom: -3px;' src='http://tvstore.hunancatv.com:9090/images/rmb.png' />" + monthPrefix + "</span> <span>" + prefix + "</span></p>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t</li>";
 //})
 		for(var i=0;i<data.list.length;i++){
-		console.log(data.list)
-		detailList.push(data.list[i].goodsid);
-		goodsList[data.list[i].goodsid] = data.list[i];
-		var arr = data.list[i].customPrice.split('/')//split() 方法用于把一个字符串分割成字符串数组。
-		var monthPrefix = arr.length?(arr[0]+'/'):''
-		var prefix = arr.length?arr[1]:''
-		html += "<li ><div id=\"list-focus" + (i + 1) + "\" data-mindeposite=\"" + data.list[i].mindeposite + "\"  data-skudesc=\"" + data.list[i].skudesc + "\"  data-id=\"" + data.list[i].goodsid + "\">\n\t\t\t\t\t<img src=\"" + imgUrls[i] + "\" alt=\"\">\n\t\t\t\t\t<div class=\"butto-price\">\n\t\t\t\t\t<p class=\"originalPrice\">原价" + data.list[i].priceUnit + "</p>\n\t\t\t\t\t<p class=\"monthPackage\">" + data.list[i].timePrice + "</p>\n\t\t\t\t\t<p class=\"presentPrice\"><span>现价</span><span class=\"getsPrice\" style='font-family:微软雅黑'><img style='display:inline-block;height:32px;vertical-align:baseline;margin-bottom: -3px;' src='http://tvstore.hunancatv.com:9090/images/rmb.png' />" + monthPrefix + "</span> <span>" + prefix + "</span></p>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t</li>";
+			console.log(data.list)
+			detailList.push(data.list[i].goodsid);
+			goodsList[data.list[i].goodsid] = data.list[i];
+			if(data.list[i].customPrice.indexOf('/')>=0){
+				var arr = data.list[i].customPrice.split('/')//split() 方法用于把一个字符串分割成字符串数组。
+				var monthPrefix = arr.length?(arr[0]+'/'):''
+				var prefix = arr.length?arr[1]:''
+				html += "<li ><div id=\"list-focus" + (i + 1) + "\" data-mindeposite=\"" + data.list[i].mindeposite + "\"  data-skudesc=\"" + data.list[i].skudesc + "\"  data-id=\"" + data.list[i].goodsid + "\">\n\t\t\t\t\t<img src=\"" + imgUrls[i] + "\" alt=\"\">\n\t\t\t\t\t<div class=\"butto-price\">\n\t\t\t\t\t<p class=\"originalPrice\">原价" + data.list[i].priceUnit + "</p>\n\t\t\t\t\t<p class=\"monthPackage\">" + data.list[i].timePrice + "</p>\n\t\t\t\t\t<p class=\"presentPrice\"><span>现价</span><span class=\"getsPrice\" style='font-family:微软雅黑'><img style='display:inline-block;height:32px;vertical-align:baseline;margin-bottom: -3px;' src='http://tvstore.hunancatv.com:9090/images/rmb.png' />" + monthPrefix + "</span> <span>" + prefix + "</span></p>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t</li>";
+			}else{
+				html += "<li ><div id=\"list-focus" + (i + 1) + "\" data-mindeposite=\"" + data.list[i].mindeposite + "\"  data-skudesc=\"" + data.list[i].skudesc + "\"  data-id=\"" + data.list[i].goodsid + "\">\n\t\t\t\t\t<img src=\"" + imgUrls[i] + "\" alt=\"\">\n\t\t\t\t\t<div class=\"butto-price\">\n\t\t\t\t\t<p class=\"originalPrice\">原价" + data.list[i].priceUnit + "</p>\n\t\t\t\t\t<p class=\"monthPackage\">" + data.list[i].timePrice + "</p>\n\t\t\t\t\t<p class=\"presentPrice\"><span>现价</span><span class=\"getsPrice\" style='font-family:微软雅黑'><img style='display:inline-block;height:32px;vertical-align:baseline;margin-bottom: -3px;' src='http://tvstore.hunancatv.com:9090/images/rmb.png' />" + data.list[i].customPrice + "</span></p>\n\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t</li>";
+			}
 		}
 			// <div class="listWrap" id="${items.goodsid}-listWrap">
 			// 			<div class="number">${ items.priceUnit}</div>

@@ -58,15 +58,14 @@
 		</div>
 		
 		<!-- 模拟 -->
-	<div class="control">
+	   <!-- <div class="control">
 			<div id="quit" class="quit">quit</div>
 			<div id="up" class="up">up</div>
 			<div id="down" class="down">down</div>
 			<div id="left" class="left">left</div>
 			<div id="right" class="right">right</div>
 			<div id="ok"  class="ok">ok</div>
-		</div>
-	
+		</div> -->
 	</div>
 	<script src="./public/jquery.js"></script>
 	<script src="./public/port.js"></script>
@@ -178,6 +177,7 @@
 					break;
 				case 'yuyue':
 				if (focusModel == 'detailModel') {
+					//二维码生成
 					focusModel = 'yuyueModel';
 					$('.xudingtipModal').addClass('xdtipshow');
 					setTimeout(function(){

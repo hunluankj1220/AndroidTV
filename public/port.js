@@ -18,7 +18,7 @@ var favourSku = '';
 
 // 智能卡
  var cacard;
- var cacard = '8731204033495729';   //正式环境卡号--正式环境需注释
+//  var cacard = '8731204033495729';   //正式环境卡号--正式环境需注释
 // var cacard = '8731204033541662';     // 测试环境卡号
 
 // var cacard = '8731202953056323';
@@ -37,7 +37,7 @@ function getCardFromAd () {
 	} 
 }
 //正式环境需放出来
-// getCardFromAd();
+getCardFromAd();
 
 
 
@@ -82,8 +82,14 @@ function getGoodDetail (tag,originHtml) {
 			if (data.code == '10001701') {
 				var info = data.goods_info;
 				$('#goodUrl').attr('src', info.picture);
-				$('#goodTitle').html(info.goodsname);
-				$('#goodInfo').html(limitLength(info.goodsdesc));
+				if(info.goodsid=='dP9Zamg6vcvS'){
+					$('#goodTitle').html('智能机顶盒(老用户置换)');
+					$('#goodInfo').html(limitLength("老用户专属套餐→本套餐为智能终端全年最低价套餐，仅限双十一活动期间（5-11日），错过要再等一年，换智能盒，4K直播独家享、爱优腾随心点、内容超多、体验超爽。"));
+				}else{
+					$('#goodTitle').html(info.goodsname);
+					$('#goodInfo').html(limitLength(info.goodsdesc));
+				}
+				
 				$('#goodPrice').html(info.skudesc);
 				$('#order').attr('data-goodsid', info.goodsid);
 				$('#order').attr('data-order', info.orderid);
