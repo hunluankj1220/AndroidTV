@@ -18,7 +18,7 @@ var favourSku = '';
 
 // 智能卡
  var cacard;
-//  var cacard = '8731204033495729';   //正式环境卡号--正式环境需注释
+ var cacard = '8731204033495729';   //正式环境卡号--正式环境需注释
 // var cacard = '8731204033541662';     // 测试环境卡号
 
 // var cacard = '8731202953056323';
@@ -37,7 +37,7 @@ function getCardFromAd () {
 	} 
 }
 //正式环境需放出来
-getCardFromAd();
+//getCardFromAd();
 
 
 
