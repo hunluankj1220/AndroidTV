@@ -1446,15 +1446,15 @@ function doEnter () {
 				setTimeout(function(){
 					var cacard = $('#yuyue').attr('data-cacard');
 					var goodsid = $('#yuyue').attr('data-goodsid');
+					var busitypeon = $('#yuyue').attr('data-busitypeon');
 					$('#qrcode').qrcode({
-						render: 'table',// canvas 
-						width: 200,
-						height: 200,
-						correctLevel: 0,
+						// render: 'table',// canvas
+						// width: 200,
+						// height: 200,
+						// correctLevel: 0,
 						text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
-				
-					});
-				},300)
+					})
+					},200)
 				break;
 		}
 		// 预约模式

@@ -699,15 +699,31 @@ function doEnter () {
 				var isOrder = $('#order').attr('data-isOrder');
 				var sku = $('#order').attr('data-sku');
 				var goodsname = $('#order').attr('data-goodsname');
+				
 				// alert('是否续订' + isOrder);
 				// 判断是否是优惠订购
-				if (sku == favourSku) {
-					// 进行优惠订购
-					getFavourOrder(sku,orderid,goodsid,goodsname);
-				} else {
-					// 进行普通订购
-					getOrder(orderid,goodsid);
+				if(goodsid=='AxSae5yqtggw'){
+					$('.xudingtipModal').addClass('xdtipshow');
+					setTimeout(function(){
+						var cacard ='8731204033495729';
+						var cacard = $('#order').attr('data-cacard');
+						alert(goodsid+"=="+cacard);
+						// var goodsid = $('#yuyue').attr('data-goodsid');
+						// var busitypeon = $('#yuyue').attr('data-busitypeon');
+						$('#qrcode').qrcode({
+							text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
+						})
+						},200)
 				}
+					if (sku == favourSku) {
+						// 进行优惠订购
+						getFavourOrder(sku,orderid,goodsid,goodsname);
+					} else {
+						// 进行普通订购
+						getOrder(orderid,goodsid);
+					}
+				
+				
 				break;
 			case 'focus-d-back':
 				backLoseFocus(detailFocus);
@@ -731,20 +747,11 @@ function doEnter () {
 				// 弹出预约框
 				focusModel = 'yuyueModel';
 				$('.xudingtipModal').addClass('xdtipshow');
-				// setTimeout(() => {
-				// 	var cacard = $('#yuyue').attr('data-cacard');
-				// 	var goodsid = $('#yuyue').attr('data-goodsid');
-				// 	$('#qrcode').qrcode({
-				// 		// render: 'table',// canvas
-				// 		// width: 200,
-				// 		// height: 200,
-				// 		// correctLevel: 0,
-				// 		text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
-				// 	});
-				// }, 200);
+
 				setTimeout(function(){
 					var cacard = $('#yuyue').attr('data-cacard');
 					var goodsid = $('#yuyue').attr('data-goodsid');
+					var busitypeon = $('#yuyue').attr('data-busitypeon');
 					$('#qrcode').qrcode({
 						// render: 'table',// canvas
 						// width: 200,

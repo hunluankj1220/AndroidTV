@@ -183,6 +183,7 @@
 					setTimeout(function(){
 					var cacard = $('#yuyue').attr('data-cacard');
 					var goodsid = $('#yuyue').attr('data-goodsid');
+					var busitypeon = $('#yuyue').attr('data-busitypeon');
 					$('#qrcode').qrcode({
 						text: 'http://mobileapp.hunancatv.com/wx/goods/termActiv.htm?reqvsn=1.0&para={"info":{"channel":"1","cacard":"' + cacard + '","goodsid":"'+ goodsid +'","busitypeon":"20"}}'
 					})
