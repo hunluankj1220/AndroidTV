@@ -5,10 +5,10 @@
 
 // 焦点模式 
 // *fileModel *mainModel  *alertModel *confirmModel
-focusModel = 'fileModel';
+focusModel = 'menuModel';
 // init focus
 var orderFocus = '';
-var focus = '';
+var focus = 'channel-focus1';
 var curPage = 1;
 var totalPage = 2;
 // init focus
@@ -18,15 +18,11 @@ var listFocus = '';
 var orderFlag = '';
 var tuidingFlag = '';
 var focusMenu = ''; //缓存左侧菜单焦点
-// channel get focus
-function channelGetFocus() {
-	$('#' + focus).addClass('channel-active');
-}
-
-// channel lose focus
-function channelLoseFoucs() {
-	$('#' + focus).removeClass('channel-active');
-}
+var focusFile = false;
+$('#' + focus).addClass('active');
+$('#focus00').addClass('active');
+channelGetFocus();
+$('.channel-active').removeClass('hidden');
 // focus active / cancel
 function selected() {
 	switch (focusModel) {
@@ -35,6 +31,7 @@ function selected() {
 			$('#' + outFocus).addClass('active');
 			$('#' + outFocus + ' .btn-box span').addClass('selected');
 			$('#' + focus).addClass('active');
+			$('#focus00').addClass('active');
 			break;
 		case 'detailModel':
 			$('#' + detailFocus).addClass('active');
@@ -68,6 +65,18 @@ function cancel() {
 			break;
 	}
 }
+
+$('.channel-active').removeClass('hidden');
+// channel get focus
+function channelGetFocus() {
+	$('#' + focus).addClass('channel-active');
+}
+
+// channel lose focus
+function channelLoseFoucs() {
+	$('#' + focus).removeClass('channel-active');
+}
+
 // goods loading
 function goodsLoading() {
 	$('#orders').css('width', '100%').html('');
@@ -75,48 +84,48 @@ function goodsLoading() {
 }
 // doUp
 function doUp() {
-	// 主菜单模式
-	if (focusModel == 'fileModel') {
-		//2019-12-12
-		channelLoseFoucs();
-		// 变为主模式
-		focusModel = 'mainModel';
-		$('.file-order').addClass('file-lose');
-		$('#' + focusMenu).removeClass('channel-cash');
-		focus = 'focus00';
-		focusMenu = '';
-		selected();
-		// 左侧菜单模式
-	} else if (focusModel == 'menuModel') {
+	// 菜单模式
+	if (focusModel == 'menuModel') {
 		switch (focus) {
 			case 'channel-focus1':
 				//2019-12-12
+				cancel()
 				channelLoseFoucs();
-				focus = '';
-				$('.channel-active').addClass('hidden');
+				focus = 'focus0';
+				// $('.channel-active').addClass('hidden');
 				// 变为主菜单模式
-				focusModel = 'fileModel';
-				$('.file-order').removeClass('file-lose');
+				focusModel = 'mainModel';
+				selected();
 				break;
 			case 'channel-focus2':
 				channelLoseFoucs();
 				focus = 'channel-focus1';
+				$("#accounts").show();//显示
+				$("#wximg").show();//显示
+				$("#orderlist").attr("style", "display:none");
 				channelGetFocus();
-				ordersLoading();
-				initOrders();
+				// infoLoading();
+				getInfo();
+				setQuitToAndr('false');
 				break;
 		}
-		// 主模式
 	} else if (focusModel == 'mainModel') {
 		switch (focus) {
+			case 'focus1':
+				cancel()
+				channelLoseFoucs();
+				focus = 'focus0';
+				$('.channel-active').addClass('hidden');
+				$('#' + focusMenu).removeClass('channel-cash');
+				// 变为主菜单模式
+				focusModel = 'mainModel';
+				selected();
+				break;
 			case 'page' + curPage + '-focus1-l':
-			case 'page' + curPage + '-focuss1-l':
 			case 'page' + curPage + '-focus1-r':
 			case 'page' + curPage + '-focus2-l':
-			case 'page' + curPage + '-focuss2-l':
 			case 'page' + curPage + '-focus2-r':
 			case 'page' + curPage + '-focus3-l':
-			case 'page' + curPage + '-focuss3-l':
 			case 'page' + curPage + '-focus3-r':
 				// cancel();
 				// focus = 'focus0';
@@ -125,41 +134,26 @@ function doUp() {
 
 				break;
 			case 'page' + curPage + '-focus4-l':
-			case 'page' + curPage + '-focuss4-l':
 			case 'page' + curPage + '-focus4-r':
 				if (hasGood('focus1')) {
 					cancel();
 					focus = 'page' + curPage + '-focus1-l';
 					selected();
-				} else if (hasGood('focuss1')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss1-l';
-					selected();
 				}
 				break;
 			case 'page' + curPage + '-focus5-l':
-			case 'page' + curPage + '-focuss5-l':
 			case 'page' + curPage + '-focus5-r':
 				if (hasGood('focus2')) {
 					cancel();
 					focus = 'page' + curPage + '-focus2-l';
 					selected();
-				} else if (hasGood('focuss2')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss2-l';
-					selected();
 				}
 				break;
 			case 'page' + curPage + '-focus6-l':
-			case 'page' + curPage + '-focuss6-l':
 			case 'page' + curPage + '-focus6-r':
 				if (hasGood('focus3')) {
 					cancel();
 					focus = 'page' + curPage + '-focus3-l';
-					selected();
-				} else if (hasGood('focuss3')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss3-l';
 					selected();
 				}
 				break;
@@ -203,7 +197,7 @@ function doUp() {
 function doLeft() {
 	// 菜单模式
 	if (focusModel == 'fileModel') {
-		window.location.href = './charge.html';
+		// window.location.href = './charge.html';
 		// 主模式
 	} else if (focusModel == 'mainModel') {
 		switch (focus) {
@@ -216,15 +210,15 @@ function doLeft() {
 			case 'focus0':
 				cancel();
 				$('.file-order').addClass('file-lose'); //给.file-home添加一个类file-lose
-				focus = 'focus00';
-				selected();
-				break;
-			case 'focus00':
-				cancel();
-				$('.file-order').addClass('file-lose'); //给.file-home添加一个类file-lose
 				focus = 'focus01';
 				selected();
 				break;
+			// case 'focus00':
+			// 	cancel();
+			// 	$('.file-order').addClass('file-lose'); //给.file-home添加一个类file-lose
+			// 	focus = 'focus01';
+			// 	selected();
+			// 	break;
 			case 'page' + curPage + '-focus1-l':
 				// 判断是否翻页
 				if (curPage > 1) {
@@ -316,68 +310,6 @@ function doLeft() {
 				focus = 'page' + curPage + '-focus6-l';
 				selected();
 				break;
-			//退订记录
-			case 'page' + curPage + '-focuss1-l':
-				// 判断是否翻页
-				if (curPage > 1) {
-					// 向上翻页
-					cancel();
-					toPage(curPage - 1);
-					focus = 'page' + curPage + '-focuss1-l';
-					selected();
-				} else {
-					cancel();
-					// 变为左侧菜单模式
-					focusModel = 'menuModel';
-					focus = focusMenu;
-					$('#' + focus).removeClass('channel-cash');
-					channelGetFocus();
-				}
-				break;
-			case 'page' + curPage + '-focuss2-l':
-				if (hasGood('focuss1')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss1-l';
-					selected();
-				}
-				break;
-			case 'page' + curPage + '-focuss3-l':
-				if (hasGood('focuss2')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss2-l';
-					selected();
-				}
-				break;
-			case 'page' + curPage + '-focuss4-l':
-				// 判断是否翻页
-				if (curPage > 1) {
-					// 向上翻页
-					cancel();
-					toPage(curPage - 1);
-					focus = 'page' + curPage + '-focuss1-l';
-					selected();
-				} else {
-					if (hasGood('focuss3')) {
-						cancel();
-						focus = 'page' + curPage + '-focuss3-l';
-						selected();
-					}
-				}
-				break;
-			case 'page' + curPage + '-focuss5-l':
-				if (hasGood('focuss4')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss4-l';
-					selected();
-				}
-				break;
-			case 'page' + curPage + '-focuss6-l':
-				if (hasGood('focuss5')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss5-l';
-					selected();
-				}
-				break;
 		}
 	}
 }
@@ -398,30 +330,30 @@ function doRight() {
 		// 主模式
 	} else if (focusModel == 'menuModel') {
 		// 变为主模式
-		if ($('#orders .noOrders')[0] == undefined && focus == 'channel-focus1') {
+		if ($('#orders .noOrders')[0] == undefined && focus == 'channel-focus2') {
 			focusMenu = focus;
 			channelLoseFoucs();
 			$('#' + focus).removeClass('channel-active').addClass('channel-cash');
 			focusModel = 'mainModel';
 			focus = 'page1-focus1-l';
 			selected();
-		} else {
+		} else if (focus == 'channel-focus1') {
 			focusMenu = focus;
 			channelLoseFoucs();
 			$('#' + focus).removeClass('channel-active').addClass('channel-cash');
 			focusModel = 'mainModel';
-			focus = 'page1-focuss1-l';
+			focus = 'focus1';
 			selected();
 		}
 		// 主模式
 	} else if (focusModel == 'mainModel') {
 		switch (focus) {
-			case 'focus00':
-				cancel();
-				$('.file-order').addClass('file-lose'); //给.file-home添加一个类file-lose
-				focus = 'focus0';
-				selected();
-				break;
+			// case 'focus00':
+			// 	cancel();
+			// 	$('.file-order').addClass('file-lose'); //给.file-home添加一个类file-lose
+			// 	focus = 'focus0';
+			// 	selected();
+			// 	break;
 			case 'focus0':
 				cancel();
 				$('.file-order').addClass('file-lose'); //给.file-home添加一个类file-lose
@@ -431,7 +363,7 @@ function doRight() {
 			case 'focus01':
 				cancel();
 				$('.file-order').addClass('file-lose'); //给.file-home添加一个类file-lose
-				focus = 'focus00';
+				focus = 'focus0';
 				selected();
 				break;
 			case 'page' + curPage + '-focus1-l':
@@ -586,139 +518,72 @@ function doRight() {
 					selected();
 				}
 				break;
-			// 退订记录
-			case 'page' + curPage + '-focuss1-l':
-				// 不存在 判断下一个模块是否存在
-				if (hasGood('focuss2')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss2-l';
-					selected();
-
-				}
-				break;
-			case 'page' + curPage + '-focuss2-l':
-				// 不存在 判断下一个模块是否存在
-				if (hasGood('focuss3')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss3-l';
-					selected();
-				}
-				break;
-			case 'page' + curPage + '-focuss3-l':
-
-				// 判断是否翻页
-				if (curPage < totalPage) {
-					// 翻页
-					toPage(curPage + 1);
-					cancel();
-					focus = 'page' + curPage + '-focuss1-l';
-					selected();
-				} else {
-					if (hasGood('focuss4')) {
-						cancel();
-						focus = 'page' + curPage + '-focuss4-l';
-						selected();
-					}
-
-				}
-				break;
-			case 'page' + curPage + '-focuss4-l':
-				if (hasGood('focuss5')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss5-l';
-					selected();
-				}
-				break;
-			case 'page' + curPage + '-focuss5-l':
-				if (hasGood('focuss6')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss6-l';
-					selected();
-				}
-				break;
-			case 'page' + curPage + '-focuss6-l':
-				// 判断是否翻页
-				if (curPage < totalPage) {
-					// 翻页
-					// getOrders(curPage + 1);
-					toPage(curPage + 1);
-					cancel();
-					focus = 'page' + curPage + '-focuss1-l';
-					selected();
-				}
-				break;
 		}
 	}
 }
 
 // doDown 
 function doDown() {
-	// 主模式
-	if (focusModel == 'fileModel') {
-		// 变为左侧菜单模式
-		focusModel = 'menuModel';
-		$('.file-order').addClass('file-lose');
-		$('.channel-active').removeClass('hidden');
-		focus = 'channel-focus1';
-		channelGetFocus();
-		ordersLoading();
-		initOrders();
-		toPage(1);
-		// 获取第一个频道下的商品
-		// getChannel($('#channel-focus1').attr('data-code'));
-		// focus = 'page1-focus1-l';
-		// selected();
-		// 左侧菜单模式
-	} else if (focusModel == 'menuModel') {
+   if (focusModel == 'menuModel') {
 		switch (focus) {
 			case 'channel-focus1':
+				$("#orderlist").show();//显示
+				$("#accounts").attr("style", "display:none");
+				$("#wximg").attr("style", "display:none");
 				channelLoseFoucs();
 				focus = 'channel-focus2';
 				channelGetFocus();
+				// ordersLoading();
+				initOrders();
+				toPage(1);
+				// 向安卓传递数据
 				// setQuitToAndr('false');
-				goodsLoading();
-				// // 请求数据
-				loading();
-				getTuidingGoods();
 				break;
 			case 'channel-focus2':
 				//2019-12-13
+				cancel()
 				channelLoseFoucs();
-				focus = '';
-				$('.channel-active').addClass('hidden');
+				focus = 'focus0';
+				// $('.channel-active').addClass('hidden');
 				// 变为主菜单模式
-				focusModel = 'fileModel';
-				$('.file-order').removeClass('file-lose');
+				focusModel = 'mainModel';
+				selected();
 				break;
 		}
 		// 主模式
 	} else if (focusModel == 'mainModel') {
 		switch (focus) {
+			case 'focus1':
+				cancel();
+				$('#' + focusMenu).removeClass('channel-cash');
+				channelLoseFoucs();
+				focus = 'focus0';
+				// $('.channel-active').addClass('hidden');
+				// 变为主菜单模式
+				focusModel = 'mainModel';
+				selected();
+				break;
 			case 'focus00':
 			case 'focus0':
 			case 'focus01':
 				cancel();
-				// focus = 'page' + curPage + '-focus1-l';
-				// selected();
-
-				//2019-12-13
-				channelLoseFoucs();
-				focus = '';
-				$('.channel-active').addClass('hidden');
-				// 变为主菜单模式
-				focusModel = 'fileModel';
-				$('.file-order').removeClass('file-lose');
+				// 变为左侧菜单模式
+				focusModel = 'menuModel';
+				$("#accounts").show();//显示
+				$("#wximg").show();//显示
+				$("#orderlist").attr("style", "display:none");
+				$('.channel-active').removeClass('hidden');
+				focus = 'channel-focus1';
+				channelGetFocus();
+				// ordersLoading();
+				initOrders();
+			
 				break;
 			case 'page' + curPage + '-focus1-l':
-			case 'page' + curPage + '-focuss1-l':
 			case 'page' + curPage + '-focus1-r':
 				if (hasGood('focus4')) {
 					cancel();
 					focus = 'page' + curPage + '-focus4-l';
-					selected();
-				} else if (hasGood('focuss4')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss4-l';
 					selected();
 				} else {
 					// 从主模式变为主菜单模式
@@ -726,45 +591,41 @@ function doDown() {
 				}
 				break;
 			case 'page' + curPage + '-focus2-l':
-			case 'page' + curPage + '-focuss2-l':
 			case 'page' + curPage + '-focus2-r':
 				if (hasGood('focus5')) {
 					cancel();
 					focus = 'page' + curPage + '-focus5-l';
 					selected();
-				} else if (hasGood('focuss5')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss5-l';
-					selected();
-				} else if (!hasGood('focus4') && !hasGood('focus5') && !hasGood('focuss4') && !hasGood('focuss5')) {
+				} else if (!hasGood('focus4') && !hasGood('focus5')) {
 					mainToFile();
 				}
 				break;
 			case 'page' + curPage + '-focus3-l':
-			case 'page' + curPage + '-focuss3-l':
 			case 'page' + curPage + '-focus3-r':
 				if (hasGood('focus6')) {
 					cancel();
 					focus = 'page' + curPage + '-focus6-l';
 					selected();
-				} else if (hasGood('focuss6')) {
-					cancel();
-					focus = 'page' + curPage + '-focuss6-l';
-					selected();
-				} else if (!hasGood('focus4') && !hasGood('focus5') && !hasGood('foucus6') && !hasGood('focuss4') && !hasGood('focuss5') && !hasGood('foucuss6')) {
+				} else if (!hasGood('focus4') && !hasGood('focus5') && !hasGood('foucus6')) {
 					mainToFile();
 				}
 				break;
 			case 'page' + curPage + '-focus4-l':
-			case 'page' + curPage + '-focuss4-l':
 			case 'page' + curPage + '-focus4-r':
 			case 'page' + curPage + '-focus5-l':
-			case 'page' + curPage + '-focuss5-l':
 			case 'page' + curPage + '-focus5-r':
 			case 'page' + curPage + '-focus6-l':
-			case 'page' + curPage + '-focuss6-l':
 			case 'page' + curPage + '-focus6-r':
+				// cancel();
+				// // 变为菜单模式
+				// focusModel = 'fileModel';
+				// $('.file-order').removeClass('file-lose');
+				// focus = '';
+				// toPage(1);
 				mainToFile();
+				// cancel();
+				// focus = 'focus0';
+				// selected();
 				break;
 		}
 		// 弹框模式
@@ -804,15 +665,15 @@ function doDown() {
 
 // 从主模式变为主菜单模式
 function mainToFile() {
-	cancel();
-	focus = '';
 	curPage = 1;
-	// 变为主菜单模式
+	cancel()
+	channelLoseFoucs();
+	focus = 'focus0';
+	$('.channel-active').addClass('hidden');
 	$('#' + focusMenu).removeClass('channel-cash');
-	focusMenu = '';
 	// 变为主菜单模式
-	focusModel = 'fileModel';
-	$('.file-order').removeClass('file-lose');
+	focusModel = 'mainModel';
+	selected();
 }
 
 // doEnter
@@ -824,14 +685,8 @@ function doEnter() {
 				// 续订
 				orderFlag = '续订';
 				var outFocus = focus.split('-')[0] + '-' + focus.split('-')[1];
-				// console.log('退订记录:' + outFocus.indexOf("-focuss") + ":" + outFocus);
-				if (outFocus.indexOf("-focuss") != -1) {
-					console.log('退订记录' + outFocus.indexOf("-focuss"));
-				} else {
-					// 查询续订详情
-					getOrderDetail($('#' + outFocus).attr('data-code'));
-				}
-
+				// 查询续订详情
+				getOrderDetail($('#' + outFocus).attr('data-code'));
 			} else if (focus.split('-')[2] == 'r') {
 				// 退订
 				orderFlag = '退订';
@@ -842,13 +697,10 @@ function doEnter() {
 				$('#wxtips').html('是否退订当前产品？');
 				boxShow();
 			}
-		} else if (focus == 'focus00') {
-			//个人中心
-			window.location.href = './personal.html?html=order';
 		} else if (focus == 'focus0') {
-			window.location.href = './search.html?html=order';
+			window.location.href = './search.html?html=home';
 		} else if (focus == 'focus01') {
-			window.location.href = './help.html?html=order'
+			window.location.href='./help.html?html=home'
 		}
 		// 弹框模式
 	} else if (focusModel == 'alertModel') {
@@ -877,9 +729,17 @@ function doQuit() {
 		detailClose();
 		// 变为主模式
 		focusModel = 'mainModel';
-	} else if (focusModel == 'fileModel') {
+	} else if (focusModel == 'menuModel') {
 		// 回到首页
-		window.location.href = './home.html';
+		var originHtml = parseQuery(window.location).html; 
+		console.log("originHtml:"+originHtml)
+		if (originHtml ) {
+			window.location.href = './' + originHtml + '.html';			
+		} else {
+			window.location.href = './home.html';
+		}
+
+		// window.location.href = './home.html';
 	} else if (focusModel == 'confirmModel') {
 		boxClose();
 		// 变为主模式
@@ -928,12 +788,12 @@ function boxClose() {
 }
 
 /* 数据加载 */
-$(function () {
-	ordersLoading();
-	initOrders();
-	// 向安卓传递数据
-	setQuitToAndr('false');
-});
+// $(function () {
+// 	ordersLoading();
+// 	initOrders();
+// 	// 向安卓传递数据
+// 	setQuitToAndr('false');
+// });
 // ordersLoading
 function ordersLoading() {
 	loading();
@@ -947,16 +807,18 @@ function judgeTdBtn(item) {
 		return 'none';
 	}
 }
+
+var d=1;
 // 判断是否为包年包月还是包季
-function isData(item) {
+function isData(item){
 	console.log(item.hasvod)
-	if (item.hasvod == 1) {
+	if(item.hasvod==1){
 		return 'item—year';
-	} else if (item.hasvod == 2) {
+	}else if(item.hasvod == 2){
 		return 'item—moth';
-	} else if (item.hasvod == 3) {
+	}else if(item.hasvod == 3){
 		return 'item—season';
-	} else {
+	}else{
 		return 'items';
 	}
 }
@@ -971,7 +833,7 @@ function initTemp(pages, counts, lists) {
 			if (i == 1) {
 				html += '<ul class="clear page">'
 				for (var j = (i - 1) * 6; j < i * 6; j++) {
-					html += '<li id="page' + i + '-focus' + (j + 1 - (6 * (i - 1))) + '" proId="' + lists[j].productId + '" data-code="' + lists[j].goodscode + '" proState="' + lists[j].state + '" class="item ' + isData(lists[j]) + '">'
+					html += '<li id="page' + i + '-focus' + (j + 1 - (6 * (i - 1))) + '" proId="' + lists[j].productId + '" data-code="' + lists[j].goodscode + '" proState="' + lists[j].state +'" class="item '+isData(lists[j])+'">'
 						+ '<p class="title">' + lists[j].goodsname + '</p>'
 						+ '<p class="time">'
 						+ '<span>到期日期</span>'
@@ -987,7 +849,7 @@ function initTemp(pages, counts, lists) {
 			} else if (i > 1 && i < pages) {
 				html += '<ul class="clear page">'
 				for (var j = (i - 1) * 6; j < i * 6; j++) {
-					html += '<li id="page' + i + '-focus' + (j + 1 - (6 * (i - 1))) + '" proId="' + lists[j].productId + '" data-code="' + lists[j].goodscode + '" proState="' + lists[j].state +  '" class="item ' + isData(lists[j]) + '">'
+					html += '<li id="page' + i + '-focus' + (j + 1 - (6 * (i - 1))) + '" proId="' + lists[j].productId + '" data-code="' + lists[j].goodscode + '" proState="' + lists[j].state + '" class="item '+isData(lists[j])+'">'
 						+ '<p class="title">' + lists[j].goodsname + '</p>'
 						+ '<p class="time">'
 						+ '<span>到期日期</span>'
@@ -1003,7 +865,7 @@ function initTemp(pages, counts, lists) {
 			} else if (i == pages) {
 				html += '<ul class="clear page">'
 				for (var j = (i - 1) * 6; j < counts; j++) {
-					html += '<li id="page' + i + '-focus' + (j + 1 - (pages - 1) * 6) + '" proId="' + lists[j].productId + '" data-code="' + lists[j].goodscode + '" proState="' + lists[j].state +  '" class="item ' + isData(lists[j]) + '">'
+					html += '<li id="page' + i + '-focus' + (j + 1 - (pages - 1) * 6) + '" proId="' + lists[j].productId + '" data-code="' + lists[j].goodscode + '" proState="' + lists[j].state + '" class="item '+isData(lists[j])+'">'
 						+ '<p class="title">' + lists[j].goodsname + '</p>'
 						+ '<p class="time">'
 						+ '<span>到期日期</span>'
@@ -1022,7 +884,7 @@ function initTemp(pages, counts, lists) {
 	} else if (pages == 1) {
 		html += '<ul class="clear page">'
 		for (var i = 0; i < counts; i++) {
-			html += '<li id="page1-focus' + (i + 1) + '" proId="' + lists[i].productId + '" proState="' + lists[i].state + '" data-code="' + lists[i].goodscode +  '" class="item ' + isData(lists[j]) + '">'
+			html += '<li id="page1-focus' + (i + 1) + '" proId="' + lists[i].productId + '" proState="' + lists[i].state + '" data-code="' + lists[i].goodscode + '" class="item '+isData(lists[j])+'">'
 				+ '<p class="title">' + lists[i].goodsname + '</p>'
 				+ '<p class="time">'
 				+ '<span>到期日期</span>'
@@ -1093,64 +955,32 @@ window.onload = function () {
 	// setTimeout(doUp, 500)
 }
 
-function initTemps(pages, counts, lists) {
-	totalPage = pages;
-	$('#orders').css('width', 1086 * pages + 'px');
-	var html = '';
-	// 多页时
-	if (pages > 1) {
-		for (var i = 1; i <= pages; i++) {
-			if (i == 1) {
-				html += '<ul class="clear page">'
-				for (var j = (i - 1) * 6; j < i * 6; j++) {
-					html += '<li id="page' + i + '-focuss' + (j + 1 - (6 * (i - 1))) + '" data-code="' + lists[j].goodscode + '" class="item items">'
-						+ '<p class="title">' + lists[j].goodsname + '</p>'
-						+ '<div class="time">'
-						+ '<p>退订日期 </p>'
-						+ '<p>' + lists[j].endtime + '</p>'
-						+ '</div>'
-						+ '</li>';
-				}
-				html += '</ul>';
-			} else if (i > 1 && i < pages) {
-				html += '<ul class="clear page">'
-				for (var j = (i - 1) * 6; j < i * 6; j++) {
-					html += '<li id="page' + i + '-focuss' + (j + 1 - (6 * (i - 1))) + '" class="item items">'
-						+ '<p class="title">' + lists[j].goodsname + '</p>'
-						+ '<div class="time">'
-						+ '<p>退订日期 </p>'
-						+ '<p>' + lists[j].endtime + '</p>'
-						+ '</div>'
-						+ '</li>';
-				}
-				html += '</ul>';
-			} else if (i == pages) {
-				html += '<ul class="clear page">'
-				for (var j = (i - 1) * 6; j < counts; j++) {
-					html += '<li id="page' + i + '-focuss' + (j + 1 - (pages - 1) * 6) + '" class="item items">'
-						+ '<p class="title">' + lists[j].goodsname + '</p>'
-						+ '<div class="time">'
-						+ '<p>退订日期 </p>'
-						+ '<p>' + lists[j].endtime + '</p>'
-						+ '</div>'
-						+ '</li>';
-				}
-				html += '</ul>';
-			}
-		}
-		// 只有一页时
-	} else if (pages == 1) {
-		html += '<ul class="clear page">'
-		for (var i = 0; i < counts; i++) {
-			html += '<li id="page1-focuss' + (i + 1) + '" class="item items">'
-				+ '<p class="title">' + lists[i].goodsname + '</p>'
-				+ '<div class="time">'
-				+ '<p>退订日期 </p>'
-				+ '<p>' + lists[i].endtime + '</p>'
-				+ '</div>'
-				+ '</li>';
-		}
-	}
-	// 向页面填充数据
-	$('#orders').html(html);
+/**
+ * 個人信息
+ */
+/* function */
+
+// 信息加载中
+function infoLoading() {
+	$('.account-text li').css({
+		opacity: 0
+	});
+	loading();
 }
+
+// 信息加载完毕
+function infoLoaded() {
+	$('.account-text li').css({
+		opacity: 1
+	});
+	loaded();
+}
+
+/* 数据加载 */
+$(function () {
+	// 加载中
+	infoLoading();
+	getInfo();
+	// getCardRolls();
+	setQuitToAndr('false');
+});

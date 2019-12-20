@@ -1475,6 +1475,7 @@ function doQuit () {
 		hideDetail();
 	} else {
 		var originHtml = parseQuery(window.location).html; 
+		console.log("originHtml:"+originHtml)
 		if (originHtml ) {
 			window.location.href = './' + originHtml + '.html';			
 		} else {

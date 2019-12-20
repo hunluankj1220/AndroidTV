@@ -1,187 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+	<!-- /**
+	* 修改：wusiliang
+	* 日期：2019-12
+	*/ -->
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="./css/public.css">
 	<link rel="stylesheet" href="./css/order.css">
 </head>
+
 <body>
 	<div class="main">
 		<!-- header -->
 		<script src="./public/header.js"></script>
 		<!-- wrapper -->
 		<div class="wrapper clear">
-			<div class="left-arrow">
-				<img class="arrow" src="./images/icon-left-arrow.png" alt="">
+			<div class="left" style="margin-top: 20px;">
+				<ul id="menus" class="left-file" style="font-size: 20px;">
+					<li id="channel-focus1" data-code="01" class="file-channel">
+						<span class="label icon-youhui">
+							<img class="img-no" src="./images/icon_unorder.png" alt="">
+							<img class="img-active" src="./images/icon_selectorder.png" alt="">
+						</span>
+						已订产品
+					</li>
+					<li id="channel-focus2" data-code="02" class="file-channel">
+						<span class="label">
+							<img class="img-no" style="margin-top: 0px;" src="./images/icon_un_td.png" alt="">
+							<img class="img-active" style="margin-top: 0px;" src="./images/icon_select_td.png" alt="">
+						</span>
+						退订记录
+					</li>
+				</ul>
 			</div>
-			<div class="content" >
-				<div id="orders" class="content-inner load-wrapper clear">
-					<!-- <ul class="clear page">
-						<li id="page1-focus1" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page1-focus2" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page1-focus3" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page1-focus4" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page1-focus5" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page1-focus6" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-					</ul>
-					<ul class="clear page">
-						<li id="page2-focus1" class="item demo">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page2-focus2" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page2-focus3" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page2-focus4" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page2-focus5" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-						<li id="page2-focus6" class="item">
-							<div class="label"></div>
-							<p class="title">凤求凰</p>
-							<p class="time">
-								<span>到期日期</span>
-								<span>2018-05-21</span>
-								<span>11:35:12</span>
-							</p>
-							<p class="btn">
-								<img src="./images/xuding-btn.png" alt="">
-							</p>
-						</li>
-					</ul> -->
+			<div class="right clear">
+				<div class="left-arrow">
+					<img class="arrow" src="./images/icon-left-arrow.png" alt="">
 				</div>
-			</div>
-			<div class="right-arrow">
-				<img class="arrow" src="./images/icon-right-arrow.png" alt="">
+				<div class="content">
+					<div id="orders" class="content-inner load-wrapper clear">
+					</div>
+				</div>
+				<div class="right-arrow">
+					<img class="arrow" src="./images/icon-right-arrow.png" alt="">
+				</div>
 			</div>
 		</div>
 		<!-- file -->
 		<script src="./public/file.js"></script>
 		<!-- 模拟 -->
-		<!-- <div class="control">
+		<div class="control">
 			<div id="up">up</div>
 			<div id="down">down</div>
 			<div id="left">left</div>
 			<div id="right">right</div>
 			<div id="ok">ok</div>
 			<div id="quit">quit</div>
-		</div> -->
+		</div>
 	</div>
 	<!-- 详情弹框 -->
 	<div id="orderDetail" class="orderDetail">
@@ -221,4 +98,5 @@
 		$('.file-order').addClass('file-active');
 	</script>
 </body>
+
 </html>

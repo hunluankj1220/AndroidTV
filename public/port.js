@@ -1,15 +1,19 @@
-﻿// 公司
+﻿/**
+ * 修改：wusiliang
+ * 日期：2019-12
+ */
+// 公司
 // var host = 'http://192.168.1.192:8090/tvstore/';
 // 测试接口地址
 // var host = 'http://192.168.0.150:8090/tvstore/';
 // var host = 'http://192.168.3.137:8090/tvstore/';  //本地接口
-// var host = 'http://testapp.hunancatv.com:9090/tvstore/';
+var host = 'http://testapp.hunancatv.com:9090/tvstore/';
 // var host = 'http://192.168.0.150:8090/tvstore/';
 /* 测试环境回调地址 */
 // var redirectUrl = 'http://172.16.21.22:9090/andriodTv/resTip.html?';
 
 /* 正式环境 */
-var host = 'http://tvstore.hunancatv.com:9090/tvstore/';
+// var host = 'http://tvstore.hunancatv.com:9090/tvstore/';
 var redirectUrl ='http://tvstore.hunancatv.com:9090/andriodTv/resTip.html?';
 
 /* 优惠商品sku */
@@ -18,8 +22,8 @@ var favourSku = '';
 
 // 智能卡
  var cacard;
- var cacard = '8731204033495729';   //正式环境卡号--正式环境需注释
-// var cacard = '8731204033541662';     // 测试环境卡号
+//  var cacard = '8731204033495729';   //正式环境卡号--正式环境需注释
+var cacard = '8731204033541662';     // 测试环境卡号
 
 // var cacard = '8731202953056323';
 // var cacard = '8731202245224473';
@@ -611,7 +615,7 @@ function getTuidingGoods () {
 		},
 		success: function (res) {
 			if (res.goods) {
-				initTemp(res.page_count,res.goods_cnt,res.goods);
+				initTemps(res.page_count,res.goods_cnt,res.goods);
 			} else {
 				noGoods();
 			}

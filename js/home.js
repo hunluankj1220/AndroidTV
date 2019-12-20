@@ -56,12 +56,13 @@ function cancel() {//cancel函数用来判断focusModel转过来的参数在取�
 
 // doup
 function doUp() { //doUp函数用来切换模式
+
 	// 菜单模式
 	if (focusModel == 'fileModel') { //传过来的focusModel ==菜单模式 
 		// 更换为主模式
 		focusModel = 'mainModel';
 		$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
-		focus = 'focus1';  //把focus1id名负值给focus
+		focus = 'focus00';  //把focus1id名负值给focus
 		selected();  //调用selected()判断focusMode传过来的参数在添加样式
 		// 主模式
 	} else if (focusModel == 'mainModel') { //传过来的focusModel== 主模式
@@ -69,9 +70,15 @@ function doUp() { //doUp函数用来切换模式
 			case 'focus1'://id名
 			case 'focus2':
 			case 'focus3':
-				cancel(); //cancel函数用来判断focusModel转过来的参数在取消样式
-				focus = 'focus0'; //focus0负值给focus
-				selected();//selected用来判断focusMode传过来的参数在添加样式
+				// cancel(); //cancel函数用来判断focusModel转过来的参数在取消样式
+				// focus = 'focus0'; //focus0负值给focus
+				// selected();//selected用来判断focusMode传过来的参数在添加样式
+				// 2019-12-12
+				cancel();
+				focus = '';
+				// 转为菜单模式
+				focusModel = 'fileModel';
+				$('.file-home').removeClass('file-lose');
 				break;
 			case 'focus4':
 				cancel();//cancel函数用来判断focusModel转过来的参数在取消样式
@@ -115,12 +122,29 @@ function doUp() { //doUp函数用来切换模式
 // dodown
 function doDown() {
 	// 主模式
-	if (focusModel == 'mainModel') {
+	// 菜单模式// 2019-12-12
+	if (focusModel == 'fileModel') { //传过来的focusModel ==菜单模式 
+		// 更换为主模式
+		focusModel = 'mainModel';
+		$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+		focus = 'focus1';  //把focus1id名负值给focus
+		selected();  //调用selected()判断focusMode传过来的参数在添加样式
+		// 主模式
+	} else if (focusModel == 'mainModel') {
 		switch (focus) {
+			case 'focus00':
 			case 'focus0':
+			case 'focus01':
+				// cancel();
+				// focus = 'focus1';
+				// selected();
+
+				// 2019-12-12
 				cancel();
-				focus = 'focus1';
-				selected();
+				focus = '';
+				// 转为菜单模式
+				focusModel = 'fileModel';
+				$('.file-home').removeClass('file-lose');
 				break;
 			case 'focus1':
 				cancel();
@@ -147,11 +171,20 @@ function doDown() {
 			case 'focus7':
 			case 'focus8':
 			case 'focus9':
+				// cancel();
+				// focus = '';
+				// // 转为菜单模式
+				// focusModel = 'fileModel';
+				// $('.file-home').removeClass('file-lose');
+
+				// 更换为主模式  2019-12-12
 				cancel();
-				focus = '';
-				// 转为菜单模式
-				focusModel = 'fileModel';
-				$('.file-home').removeClass('file-lose');
+				focusModel = 'mainModel';
+				$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+				focus = 'focus0';  //把focus1id名负值给focus
+				selected();  //调用selected()判断focusMode传过来的参数在添加样式
+
+
 				break;
 		}
 		// 详情模式
@@ -167,6 +200,24 @@ function doLeft() {
 	// 主模式
 	if (focusModel == 'mainModel') {
 		switch (focus) {
+			case 'focus01':
+				cancel();
+				$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+				focus = 'focus0';
+				selected();
+				break;
+			case 'focus0':
+				cancel();
+				$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+				focus = 'focus00';
+				selected();
+				break;
+			case 'focus00':
+				cancel();
+				$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+				focus = 'focus01';
+				selected();
+				break;
 			case 'focus2':
 				cancel();
 				focus = 'focus1';
@@ -209,12 +260,12 @@ function doLeft() {
 				break;
 		}
 		// 详情模式
-	} else if (focusModel == 'detailModel') { 
+	} else if (focusModel == 'detailModel') {
 		switch (detailFocus) {
 			case 'order':
 				cancel();
 				detailFocus = 'cancel';
-				selected();  
+				selected();
 				break;
 			case 'cancel':
 				cancel();
@@ -261,10 +312,28 @@ function doLeft() {
 function doRight() {
 	// 菜单模式
 	if (focusModel == 'fileModel') {
-		window.location.href = './account.html';
+		window.location.href = './goods.html';
 		// 主模式
 	} else if (focusModel == 'mainModel') {
 		switch (focus) {
+			case 'focus00':
+				cancel();
+				$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+				focus = 'focus0';
+				selected();
+				break;
+			case 'focus0':
+				cancel();
+				$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+				focus = 'focus01';
+				selected();
+				break;
+			case 'focus01':
+				cancel();
+				$('.file-home').addClass('file-lose'); //给.file-home添加一个类file-lose
+				focus = 'focus00';
+				selected();
+				break;
 			case 'focus1':
 				cancel();
 				focus = 'focus2';
@@ -360,6 +429,13 @@ function doEnter() {
 		switch (focus) {
 			case 'focus0':
 				window.location.href = './search.html?html=home';
+				break;
+			case 'focus01':
+				window.location.href='./help.html?html=home'
+				break;
+			case 'focus00':
+				//个人中心 
+				window.location.href='./personal.html?html=home';
 				break;
 			case 'focus2':
 				// 变为详情模式
@@ -545,9 +621,9 @@ function getHomeData() {
 		dataType: 'json',
 		timeout: 10000,
 		success: function (data) {
-			var list=data.data.list;
+			var list = data.data.list;
 			// console.log(list);
-			$('#focus1 img').attr('src', list[1].url); 
+			$('#focus1 img').attr('src', list[1].url);
 			$('#focus2 img').attr('src', list[4].url);
 			$('#focus2 .good-title').html(list[4].title);
 			$('#focus2').attr('data-tag', list[4].tag);

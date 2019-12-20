@@ -6,6 +6,8 @@
 	background: url('../images/charge-bg.png') no-repeat;
 	background-size: cover;
 	font-size: 20px;
+	/* 2019-12-09 新加 */
+	margin-top: 100px;
 }
 /* left */
 .left {

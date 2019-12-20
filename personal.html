@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+	<!-- /**
+	* 修改：wusiliang
+	* 日期：2019-12
+	*/ -->
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" href="./css/public.css">
-	<link rel="stylesheet" href="./css/account.css">
+	<link rel="stylesheet" href="./css/personal.css">
 </head>
+
 <body>
 	<div class="main">
 		<!-- header -->
@@ -15,13 +20,13 @@
 			返回首页
 		</div>
 		<!-- wrapper -->
-		<div class="wrapper clear ">
-			<div class="left" style="margin-right: 30px;">
+		<div class="wrapper clear" style="margin-top: 30px;">
+			<div class="left" style="margin-top: 20px;">
 				<ul id="menus" class="left-file" style="font-size: 20px;">
 					<li id="channel-focus1" data-code="01" class="file-channel">
 						<span class="label icon-youhui">
-							<img class="img-no" style="margin-top: 5px;" src="./images/icon_unmemsg.png" alt="">
-							<img class="img-active"  style="margin-top: 5px;" src="./images/icon_selectmemsg.png" alt="">
+							<img class="img-no"  src="./images/icon_unmemsg.png" alt="">
+							<img class="img-active"  src="./images/icon_selectmemsg.png" alt="">
 						</span>
 						个人信息
 					</li>
@@ -109,7 +114,19 @@
 				</p>
 			</div>
 		</div>
-		<!-- 详情弹框 -->
+		<!-- file -->
+		<!-- <script src="./public/file.js"></script> -->
+		<!-- 模拟 -->
+		<div class="control">
+			<div id="up">up</div>
+			<div id="down">down</div>
+			<div id="left">left</div>
+			<div id="right">right</div>
+			<div id="ok">ok</div>
+			<div id="quit">quit</div>
+		</div>
+	</div>
+	<!-- 详情弹框 -->
 	<div id="orderDetail" class="orderDetail">
 	</div>
 	<!-- 确认退订弹框 -->
@@ -122,23 +139,13 @@
 			</div>
 		</div>
 	</div>
-		<!-- file -->
-		<!-- <script src="./public/file.js"></script> -->
-		<!-- 模拟 -->
-		<!-- <div class="control">
-			<div id="up">up</div>
-			<div id="down">down</div>
-			<div id="left">left</div>
-			<div id="right">right</div>
-			<div id="ok">ok</div>
-		</div> -->
-	</div>
 	<script src="./public/jquery.js"></script>
 	<script src="./public/port.js"></script>
 	<script src="./js/public.js"></script>
-	<script src="./js/account.js"></script>
+	<script src="./js/personal.js"></script>
 	<script>
-		$('.file-account').addClass('file-active');
+		$('.file-order').addClass('file-active');
 	</script>
 </body>
+
 </html>

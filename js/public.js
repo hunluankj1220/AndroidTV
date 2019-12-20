@@ -2,7 +2,7 @@
 /* 公共方法 */
 // 退出安卓应用
 function setQuitToAndr (str) {
-	// jsObject.quitApply(str);
+	jsObject.quitApply(str);
 	return 'true';
 }
 

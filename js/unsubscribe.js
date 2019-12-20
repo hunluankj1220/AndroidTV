@@ -294,7 +294,7 @@ function toPage (page) {
 }
 
 // initTemp
-function initTemp (pages,counts,lists) {
+function initTemps (pages,counts,lists) {
 	totalPage = pages;
 	$('#orders').css('width', 1086*pages+'px');
 	var html = '';
