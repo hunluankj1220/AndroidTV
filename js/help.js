@@ -282,5 +282,6 @@ function toPage(page) {
 }
 /* 数据加载 */
 $(function() {
+    //禁止向Android传递数据
     setQuitToAndr('false');
 });
